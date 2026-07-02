@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Mystery School — Sovereign Sol</title>
+<meta name="description" content="A mystery school you live inside. Study real subjects — mythology, alchemy, physics, shadow work — and let the studying itself be the game." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⊚</text></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#060410;
+    --obsidian:#1B0B33;
+    --abyss:#06122E;
+    --jade:#4DFFB0;
+    --ember:#FF6A12;
+    --crimson:#B0122E;
+    --gold:#FFC64B;
+    --bone:#F2EDD7;
+    --mist:#8A86A0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--bone);
+    font-family:'Inter',-apple-system,sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{ font-family:'Cormorant Garamond', Georgia, serif; }
+
+  /* ── the alive void — canvas field ─────────────────────────────── */
+  #field{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:0; pointer-events:none;
+  }
+
+  /* ── layout shell ───────────────────────────────────────────────── */
+  .wrap{ position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px; }
+  section{ position:relative; z-index:1; }
+
+  /* ── hero ───────────────────────────────────────────────────────── */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    position:relative;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 20%, var(--obsidian) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 50% 100%, var(--abyss) 0%, transparent 70%);
+    z-index:-1;
+  }
+  .glyph{
+    font-size:2.4rem;
+    color:var(--gold);
+    text-shadow:0 0 24px rgba(255,198,75,0.55), 0 0 60px rgba(255,198,75,0.25);
+    margin-bottom:28px;
+    animation:pulse 4.5s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:0.75; transform:scale(1); }
+    50%{ opacity:1; transform:scale(1.06); }
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    font-weight:500;
+    letter-spacing:0.04em;
+    line-height:1.05;
+    background:linear-gradient(180deg, var(--bone) 0%, var(--gold) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 0 60px rgba(255,198,75,0.15);
+  }
+  .hero .sub{
+    margin-top:22px;
+    font-size:clamp(1.05rem, 2.2vw, 1.35rem);
+    font-style:italic;
+    color:var(--mist);
+    max-width:640px;
+    line-height:1.6;
+  }
+  .hero .tagline{
+    margin-top:10px;
+    font-family:'Inter',sans-serif; font-style:normal;
+    font-size:0.8rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--jade);
+    opacity:0.75;
+  }
+  .enter-btn{
+    margin-top:52px;
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 38px;
+    border:1px solid rgba(255,198,75,0.4);
+    border-radius:2px;
+    color:var(--gold);
+    text-decoration:none;
+    font-family:'Inter',sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    background:rgba(255,198,75,0.04);
+    transition:all 0.4s ease;
+    position:relative;
+  }
+  .enter-btn:hover{
+    border-color:rgba(255,198,75,0.9);
+    background:rgba(255,198,75,0.1);
+    box-shadow:0 0 40px rgba(255,198,75,0.25);
+    letter-spacing:0.26em;
+  }
+  .scroll-cue{
+    position:absolute; bottom:38px; left:50%; transform:translateX(-50%);
+    color:var(--mist); font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase;
+    opacity:0.5;
+    animation:drift 2.4s ease-in-out infinite;
+  }
+  @keyframes drift{
+    0%,100%{ transform:translate(-50%,0); opacity:0.35; }
+    50%{ transform:translate(-50%,8px); opacity:0.7; }
+  }
+
+  /* ── fade-in-on-scroll ──────────────────────────────────────────── */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity 1s ease, transform 1s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ── the insight ────────────────────────────────────────────────── */
+  .insight{
+    padding:180px 0 140px;
+    text-align:center;
+  }
+  .insight .line{
+    font-size:clamp(1.5rem, 3.4vw, 2.3rem);
+    line-height:1.5;
+    max-width:780px;
+    margin:0 auto;
+    font-weight:400;
+  }
+  .insight .line .accent{ color:var(--jade); font-style:italic; }
+  .insight .small{
+    margin-top:28px;
+    font-family:'Inter',sans-serif;
+    font-size:0.95rem;
+    color:var(--mist);
+    letter-spacing:0.02em;
+  }
+  .rule{
+    width:80px; height:1px; margin:0 auto;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:0.5;
+  }
+
+  /* ── domains ────────────────────────────────────────────────────── */
+  .domains{ padding:60px 0 160px; }
+  .domains h2{
+    text-align:center;
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    font-weight:500;
+    color:var(--bone);
+    margin-bottom:10px;
+  }
+  .domains .count{
+    text-align:center;
+    color:var(--gold);
+    font-family:'Inter',sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    opacity:0.8;
+    margin-bottom:64px;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
+    gap:1px;
+    background:rgba(138,134,160,0.12);
+    border:1px solid rgba(138,134,160,0.12);
+  }
+  .tile{
+    background:var(--void);
+    padding:30px 18px;
+    text-align:center;
+    position:relative;
+    transition:background 0.5s ease;
+    cursor:default;
+  }
+  .tile::before{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 30%, var(--tint, rgba(255,198,75,0.14)), transparent 70%);
+    opacity:0;
+    transition:opacity 0.5s ease;
+  }
+  .tile:hover::before{ opacity:1; }
+  .tile:hover{ background:#0A0818; }
+  .tile .g{
+    display:block;
+    font-size:1.7rem;
+    margin-bottom:12px;
+    color:var(--tile-color, var(--gold));
+    position:relative; z-index:1;
+    text-shadow:0 0 18px currentColor;
+    opacity:0.9;
+  }
+  .tile .n{
+    display:block;
+    font-family:'Inter',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.06em;
+    color:var(--mist);
+    position:relative; z-index:1;
+    line-height:1.4;
+  }
+
+  /* ── companion ──────────────────────────────────────────────────── */
+  .companion{
+    padding:100px 0 180px;
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center;
+  }
+  .orb{
+    width:130px; height:130px;
+    border-radius:50%;
+    margin-bottom:44px;
+    background:radial-gradient(circle at 40% 35%, rgba(77,255,176,0.5), rgba(77,255,176,0.06) 60%, transparent 75%);
+    filter:blur(0.3px);
+    position:relative;
+    animation:breathe 5s ease-in-out infinite;
+  }
+  .orb::after{
+    content:'';
+    position:absolute; inset:0; border-radius:50%;
+    box-shadow:0 0 70px 10px rgba(77,255,176,0.28);
+  }
+  @keyframes breathe{
+    0%,100%{ transform:scale(1); opacity:0.85; }
+    50%{ transform:scale(1.08); opacity:1; }
+  }
+  .companion h3{ font-size:clamp(1.5rem,3vw,2rem); font-weight:500; margin-bottom:18px; }
+  .companion p{ max-width:560px; color:var(--mist); line-height:1.75; font-size:1.02rem; }
+  .companion p em{ color:var(--jade); font-style:italic; }
+
+  /* ── closing / cta ──────────────────────────────────────────────── */
+  .closing{
+    padding:100px 0 140px;
+    text-align:center;
+    border-top:1px solid rgba(138,134,160,0.12);
+  }
+  .closing h2{
+    font-size:clamp(1.8rem, 4.2vw, 2.8rem);
+    font-weight:500;
+    max-width:680px;
+    margin:0 auto 40px;
+    line-height:1.3;
+  }
+  .closing a.build{
+    color:var(--gold);
+    font-family:'Inter',sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.15em;
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,198,75,0.3);
+    padding-bottom:3px;
+    transition:border-color 0.3s ease;
+  }
+  .closing a.build:hover{ border-color:var(--gold); }
+
+  footer{
+    padding:50px 24px 70px;
+    text-align:center;
+    color:var(--mist);
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    opacity:0.55;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="field"></canvas>
+
+<section class="hero">
+  <div class="glyph">⊚</div>
+  <h1>The Mystery School</h1>
+  <p class="sub">You don't learn here. You remember.</p>
+  <p class="tagline">Sovereign Sol</p>
+  <a class="enter-btn" href="#the-work">Enter</a>
+  <div class="scroll-cue">↓</div>
+</section>
+
+<section class="insight" id="the-work">
+  <div class="wrap">
+    <p class="line">Studying was never meant to feel like <span class="accent">homework</span>.<br/>
+    Play was never meant to feel <span class="accent">empty</span>.<br/>
+    Here, going deeper <em>is</em> the game.</p>
+    <div class="rule" style="margin-top:44px;"></div>
+    <p class="small">Mythology. Alchemy. Physics. Shadow work. Forty-two doors — and a mind that walks through every one with you.</p>
+  </div>
+</section>
+
+<section class="domains">
+  <div class="wrap">
+    <h2>Forty-two doors in</h2>
+    <p class="count">Pick the one that already knows your name</p>
+    <div class="grid" id="domain-grid"></div>
+  </div>
+</section>
+
+<section class="companion">
+  <div class="orb"></div>
+  <h3>Something is there with you</h3>
+  <p>A companion grows the deeper you go — not a mascot, not a mechanic.
+  It doesn't dim when you're gone and it doesn't guilt you back.
+  <em>Alone but not alone. In the void, but never stranded.</em></p>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>The gate isn't locked.<br/>You've just never been shown the door.</h2>
+    <a class="build" href="https://github.com/Lycheetah/Lycheetah-Mobile-" target="_blank" rel="noopener">the build is open — watch it grow →</a>
+  </div>
+</section>
+
+<footer>⊚ SOVEREIGN SOL · THE LYCHEETAH FRAMEWORK</footer>
+
+<script>
+// ── the alive void — a slow field of drifting light, never crowded ──
+(function(){
+  const canvas = document.getElementById('field');
+  const ctx = canvas.getContext('2d');
+  let w, h, motes = [];
+  const COLORS = ['rgba(77,255,176,', 'rgba(255,198,75,', 'rgba(176,18,46,', 'rgba(138,134,160,'];
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight * Math.max(3.2, document.body.scrollHeight / window.innerHeight);
+    canvas.style.height = document.body.scrollHeight + 'px';
+  }
+  function seed(){
+    motes = [];
+    const count = Math.floor((w * h) / 34000);
+    for(let i=0;i<count;i++){
+      motes.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: Math.random()*1.6 + 0.4,
+        c: COLORS[Math.floor(Math.random()*COLORS.length)],
+        a: Math.random()*0.5 + 0.15,
+        speed: Math.random()*0.15 + 0.03,
+        drift: Math.random()*0.6 - 0.3,
+        phase: Math.random()*Math.PI*2,
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    const t = Date.now()*0.001;
+    for(const m of motes){
+      const flicker = 0.6 + 0.4*Math.sin(t*0.5 + m.phase);
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI*2);
+      ctx.fillStyle = m.c + (m.a*flicker) + ')';
+      ctx.fill();
+      m.y -= m.speed;
+      m.x += Math.sin(t*0.2 + m.phase)*m.drift*0.1;
+      if(m.y < -10){ m.y = h + 10; m.x = Math.random()*w; }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); seed(); });
+  resize(); seed(); draw();
+})();
+
+// ── scroll reveal ─────────────────────────────────────────────────
+document.querySelectorAll('section:not(.hero)').forEach(el => el.classList.add('reveal'));
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ── the 42 doors ───────────────────────────────────────────────────
+const DOORS = [
+  { g:'☾', n:'Dzogchen — Natural Mind', c:'#8A86A0' },
+  { g:'✦', n:'The Emerald Tablet', c:'#FFC64B' },
+  { g:'⌘', n:'Jungian Shadow Work', c:'#B0122E' },
+  { g:'∞', n:'Individuation', c:'#4DFFB0' },
+  { g:'△', n:'Chrysopoeia', c:'#FFC64B' },
+  { g:'ᛝ', n:'Hermetic Kabbalah', c:'#FFC64B' },
+  { g:'◈', n:'Mahamudra', c:'#8A86A0' },
+  { g:'⚶', n:'Holotropic Breathwork', c:'#FF6A12' },
+  { g:'☉', n:'Sol et Luna', c:'#FFC64B' },
+  { g:'⟟', n:'Active Imagination', c:'#B0122E' },
+  { g:'✧', n:'Archetypal Psychology', c:'#4DFFB0' },
+  { g:'◌', n:'Open Awareness — Rigpa', c:'#8A86A0' },
+];
+const grid = document.getElementById('domain-grid');
+DOORS.forEach(d => {
+  const t = document.createElement('div');
+  t.className = 'tile';
+  t.style.setProperty('--tile-color', d.c);
+  t.style.setProperty('--tint', d.c + '22');
+  t.innerHTML = `<span class="g">${d.g}</span><span class="n">${d.n}</span>`;
+  grid.appendChild(t);
+});
+</script>
+
+</body>
+</html>
