@@ -5,21 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The Mystery School — Sovereign Sol</title>
 <meta name="description" content="A mystery school you live inside. Study real subjects — mythology, alchemy, physics, shadow work — and let the studying itself be the game." />
+<meta property="og:title" content="The Mystery School — Sovereign Sol" />
+<meta property="og:description" content="You don't learn here. You remember. Forty-two doors, a companion that grows as you go deeper, and a mind that walks with you." />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⊚</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* ── THE VOID SPECTRUM — Mac's locked palette, verbatim ─────────── */
   :root{
-    --void:#060410;
-    --obsidian:#1B0B33;
-    --abyss:#06122E;
-    --jade:#4DFFB0;
-    --ember:#FF6A12;
-    --crimson:#B0122E;
-    --gold:#FFC64B;
-    --bone:#F2EDD7;
-    --mist:#8A86A0;
+    --void:#060410;       /* the true ground */
+    --obsidian:#1B0B33;   /* spiritual purple, deeper than the blue */
+    --abyss:#06122E;      /* deeper than ocean */
+    --jade:#4DFFB0;       /* ghost jade — bioluminescent */
+    --ember:#FF6A12;      /* chaos ember */
+    --crimson:#B0122E;    /* blood crimson */
+    --gold:#FFC64B;       /* gold shine — the sacred accent */
+    --bone:#F2EDD7;       /* warmest light only */
+    --mist:#8A86A0;       /* violet-grey, never dead grey */
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -31,16 +34,26 @@
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3,.serif{ font-family:'Cormorant Garamond', Georgia, serif; }
+  ::selection{ background:rgba(255,198,75,0.25); color:var(--bone); }
 
-  /* ── the alive void — canvas field ─────────────────────────────── */
+  /* ── the alive void — fixed viewport canvas ─────────────────────── */
   #field{
-    position:fixed; inset:0; width:100%; height:100%;
+    position:fixed; inset:0; width:100vw; height:100vh;
     z-index:0; pointer-events:none;
   }
 
-  /* ── layout shell ───────────────────────────────────────────────── */
   .wrap{ position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px; }
   section{ position:relative; z-index:1; }
+
+  /* ── the hum — §II.2: warm-shift outer, cool-shift inner ────────── */
+  @keyframes hum{
+    0%,100%{ text-shadow:
+      0 0 22px rgba(255,198,75,0.55), 0 0 64px rgba(255,106,18,0.22),
+      0 0 3px rgba(77,255,176,0.5); }
+    50%{ text-shadow:
+      0 0 30px rgba(255,198,75,0.7), 0 0 80px rgba(255,106,18,0.3),
+      0 0 5px rgba(77,255,176,0.75); }
+  }
 
   /* ── hero ───────────────────────────────────────────────────────── */
   .hero{
@@ -48,158 +61,178 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     text-align:center;
     position:relative;
+    padding:0 20px;
   }
   .hero::before{
     content:'';
     position:absolute; inset:0;
     background:
-      radial-gradient(ellipse 60% 50% at 50% 20%, var(--obsidian) 0%, transparent 60%),
-      radial-gradient(ellipse 80% 60% at 50% 100%, var(--abyss) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 50% at 50% 18%, var(--obsidian) 0%, transparent 62%),
+      radial-gradient(ellipse 85% 55% at 50% 105%, var(--abyss) 0%, transparent 72%);
     z-index:-1;
   }
   .glyph{
-    font-size:2.4rem;
+    font-size:2.5rem;
     color:var(--gold);
-    text-shadow:0 0 24px rgba(255,198,75,0.55), 0 0 60px rgba(255,198,75,0.25);
-    margin-bottom:28px;
-    animation:pulse 4.5s ease-in-out infinite;
+    margin-bottom:30px;
+    animation:hum 5s ease-in-out infinite, pulse 5s ease-in-out infinite;
   }
   @keyframes pulse{
-    0%,100%{ opacity:0.75; transform:scale(1); }
-    50%{ opacity:1; transform:scale(1.06); }
+    0%,100%{ opacity:0.78; transform:scale(1); }
+    50%{ opacity:1; transform:scale(1.05); }
   }
   .hero h1{
-    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    font-size:clamp(2.6rem, 7vw, 5.4rem);
     font-weight:500;
-    letter-spacing:0.04em;
+    letter-spacing:0.045em;
     line-height:1.05;
-    background:linear-gradient(180deg, var(--bone) 0%, var(--gold) 100%);
+    background:linear-gradient(180deg, var(--bone) 5%, var(--gold) 95%);
     -webkit-background-clip:text; background-clip:text; color:transparent;
-    text-shadow:0 0 60px rgba(255,198,75,0.15);
   }
   .hero .sub{
-    margin-top:22px;
-    font-size:clamp(1.05rem, 2.2vw, 1.35rem);
+    margin-top:24px;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(1.15rem, 2.4vw, 1.5rem);
     font-style:italic;
     color:var(--mist);
     max-width:640px;
     line-height:1.6;
   }
   .hero .tagline{
-    margin-top:10px;
-    font-family:'Inter',sans-serif; font-style:normal;
-    font-size:0.8rem;
-    letter-spacing:0.28em;
+    margin-top:12px;
+    font-size:0.78rem;
+    letter-spacing:0.3em;
     text-transform:uppercase;
     color:var(--jade);
     opacity:0.75;
   }
   .enter-btn{
-    margin-top:52px;
+    margin-top:54px;
     display:inline-flex; align-items:center; gap:10px;
-    padding:16px 38px;
+    padding:16px 40px;
     border:1px solid rgba(255,198,75,0.4);
     border-radius:2px;
     color:var(--gold);
     text-decoration:none;
-    font-family:'Inter',sans-serif;
     font-size:0.82rem;
     letter-spacing:0.22em;
     text-transform:uppercase;
     background:rgba(255,198,75,0.04);
-    transition:all 0.4s ease;
-    position:relative;
+    transition:all 0.45s ease;
+    /* the hum on the vessel: warm out, cool in */
+    box-shadow:0 0 24px rgba(255,106,18,0.10), inset 0 0 12px rgba(77,255,176,0.06);
   }
   .enter-btn:hover{
-    border-color:rgba(255,198,75,0.9);
-    background:rgba(255,198,75,0.1);
-    box-shadow:0 0 40px rgba(255,198,75,0.25);
-    letter-spacing:0.26em;
+    border-color:rgba(255,198,75,0.95);
+    background:rgba(255,198,75,0.10);
+    box-shadow:0 0 48px rgba(255,106,18,0.28), inset 0 0 16px rgba(77,255,176,0.14);
+    letter-spacing:0.27em;
   }
   .scroll-cue{
     position:absolute; bottom:38px; left:50%; transform:translateX(-50%);
-    color:var(--mist); font-size:0.7rem; letter-spacing:0.3em; text-transform:uppercase;
+    color:var(--mist); font-size:0.68rem; letter-spacing:0.3em; text-transform:uppercase;
     opacity:0.5;
-    animation:drift 2.4s ease-in-out infinite;
+    animation:drift 2.6s ease-in-out infinite;
   }
   @keyframes drift{
-    0%,100%{ transform:translate(-50%,0); opacity:0.35; }
-    50%{ transform:translate(-50%,8px); opacity:0.7; }
+    0%,100%{ transform:translate(-50%,0); opacity:0.32; }
+    50%{ transform:translate(-50%,8px); opacity:0.65; }
   }
+  /* ── the stillness whisper — §IV, surfaces only if you stay ─────── */
+  #whisper{
+    position:absolute; bottom:86px; left:50%; transform:translateX(-50%);
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-style:italic;
+    font-size:0.98rem;
+    color:rgba(255,198,75,0.0);
+    white-space:nowrap;
+    transition:color 3.5s ease;
+    pointer-events:none;
+  }
+  #whisper.surfaced{ color:rgba(255,198,75,0.55); }
 
   /* ── fade-in-on-scroll ──────────────────────────────────────────── */
-  .reveal{ opacity:0; transform:translateY(28px); transition:opacity 1s ease, transform 1s ease; }
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity 1.1s ease, transform 1.1s ease; }
   .reveal.in{ opacity:1; transform:translateY(0); }
 
   /* ── the insight ────────────────────────────────────────────────── */
-  .insight{
-    padding:180px 0 140px;
-    text-align:center;
-  }
+  .insight{ padding:180px 0 140px; text-align:center; }
   .insight .line{
-    font-size:clamp(1.5rem, 3.4vw, 2.3rem);
-    line-height:1.5;
-    max-width:780px;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-size:clamp(1.55rem, 3.4vw, 2.35rem);
+    line-height:1.55;
+    max-width:800px;
     margin:0 auto;
     font-weight:400;
   }
   .insight .line .accent{ color:var(--jade); font-style:italic; }
+  .insight .line em{ color:var(--gold); }
   .insight .small{
-    margin-top:28px;
-    font-family:'Inter',sans-serif;
+    margin-top:30px;
     font-size:0.95rem;
     color:var(--mist);
     letter-spacing:0.02em;
   }
   .rule{
-    width:80px; height:1px; margin:0 auto;
+    width:84px; height:1px; margin:44px auto 0;
     background:linear-gradient(90deg, transparent, var(--gold), transparent);
     opacity:0.5;
   }
 
-  /* ── domains ────────────────────────────────────────────────────── */
-  .domains{ padding:60px 0 160px; }
+  /* ── the doors ──────────────────────────────────────────────────── */
+  .domains{ padding:60px 0 150px; }
   .domains h2{
     text-align:center;
-    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    font-size:clamp(1.8rem, 4vw, 2.7rem);
     font-weight:500;
-    color:var(--bone);
     margin-bottom:10px;
   }
   .domains .count{
     text-align:center;
     color:var(--gold);
-    font-family:'Inter',sans-serif;
-    font-size:0.78rem;
-    letter-spacing:0.24em;
+    font-size:0.76rem;
+    letter-spacing:0.26em;
     text-transform:uppercase;
     opacity:0.8;
-    margin-bottom:64px;
+    margin-bottom:60px;
   }
   .grid{
     display:grid;
     grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));
     gap:1px;
-    background:rgba(138,134,160,0.12);
-    border:1px solid rgba(138,134,160,0.12);
+    background:rgba(138,134,160,0.10);
+    border:1px solid rgba(138,134,160,0.10);
   }
   .tile{
     background:var(--void);
-    padding:30px 18px;
+    padding:32px 18px 28px;
     text-align:center;
     position:relative;
     transition:background 0.5s ease;
     cursor:default;
+    overflow:hidden;
+    opacity:0; transform:translateY(14px);
   }
+  .tile.in{ opacity:1; transform:translateY(0); transition:opacity 0.9s ease, transform 0.9s ease, background 0.5s ease; }
   .tile::before{
     content:'';
     position:absolute; inset:0;
-    background:radial-gradient(circle at 50% 30%, var(--tint, rgba(255,198,75,0.14)), transparent 70%);
+    background:radial-gradient(circle at 50% 28%, var(--tint, rgba(255,198,75,0.14)), transparent 70%);
     opacity:0;
     transition:opacity 0.5s ease;
   }
+  .tile::after{
+    content:'';
+    position:absolute; left:20%; right:20%; bottom:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--tile-color, var(--gold)), transparent);
+    transform:scaleX(0);
+    transition:transform 0.5s ease;
+    opacity:0.7;
+  }
   .tile:hover::before{ opacity:1; }
+  .tile:hover::after{ transform:scaleX(1); }
   .tile:hover{ background:#0A0818; }
+  .tile:hover .g{ transform:translateY(-3px); opacity:1; }
   .tile .g{
     display:block;
     font-size:1.7rem;
@@ -207,84 +240,124 @@
     color:var(--tile-color, var(--gold));
     position:relative; z-index:1;
     text-shadow:0 0 18px currentColor;
-    opacity:0.9;
+    opacity:0.88;
+    transition:transform 0.4s ease, opacity 0.4s ease;
   }
   .tile .n{
     display:block;
-    font-family:'Inter',sans-serif;
-    font-size:0.72rem;
+    font-size:0.71rem;
     letter-spacing:0.06em;
     color:var(--mist);
     position:relative; z-index:1;
-    line-height:1.4;
+    line-height:1.45;
+  }
+  .doors-more{
+    text-align:center;
+    margin-top:34px;
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-style:italic;
+    font-size:1.02rem;
+    color:var(--mist);
+    opacity:0.85;
   }
 
-  /* ── companion ──────────────────────────────────────────────────── */
+  /* ── the companion — §III light-form spectrum ───────────────────── */
   .companion{
     padding:100px 0 180px;
     display:flex; flex-direction:column; align-items:center;
     text-align:center;
   }
+  .orb-stage{ position:relative; width:180px; height:180px; margin-bottom:44px; }
   .orb{
-    width:130px; height:130px;
+    position:absolute; inset:25px;
     border-radius:50%;
-    margin-bottom:44px;
-    background:radial-gradient(circle at 40% 35%, rgba(77,255,176,0.5), rgba(77,255,176,0.06) 60%, transparent 75%);
-    filter:blur(0.3px);
-    position:relative;
-    animation:breathe 5s ease-in-out infinite;
+    background:radial-gradient(circle at 40% 35%, rgba(77,255,176,0.55), rgba(77,255,176,0.07) 58%, transparent 74%);
+    animation:breathe 6s ease-in-out infinite, lightform 22s ease-in-out infinite;
   }
   .orb::after{
     content:'';
     position:absolute; inset:0; border-radius:50%;
-    box-shadow:0 0 70px 10px rgba(77,255,176,0.28);
+    box-shadow:0 0 70px 12px rgba(77,255,176,0.26);
+  }
+  /* the dissolve–reform cycle: solid → light-form → solid */
+  @keyframes lightform{
+    0%,100%{ filter:blur(0px); opacity:0.95; }
+    45%{ filter:blur(0px); opacity:0.95; }
+    58%{ filter:blur(7px); opacity:0.55; }
+    70%{ filter:blur(2px); opacity:0.85; }
   }
   @keyframes breathe{
-    0%,100%{ transform:scale(1); opacity:0.85; }
-    50%{ transform:scale(1.08); opacity:1; }
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.07); }
   }
-  .companion h3{ font-size:clamp(1.5rem,3vw,2rem); font-weight:500; margin-bottom:18px; }
-  .companion p{ max-width:560px; color:var(--mist); line-height:1.75; font-size:1.02rem; }
+  .mote-orbit{
+    position:absolute; inset:0;
+    animation:orbit 14s linear infinite;
+  }
+  .mote-orbit i{
+    position:absolute; top:0; left:50%;
+    width:4px; height:4px; margin-left:-2px;
+    border-radius:50%;
+    background:var(--jade);
+    box-shadow:0 0 10px 2px rgba(77,255,176,0.5);
+    opacity:0.7;
+  }
+  .mote-orbit.o2{ animation-duration:23s; animation-direction:reverse; transform:rotate(120deg); }
+  .mote-orbit.o2 i{ background:var(--gold); box-shadow:0 0 10px 2px rgba(255,198,75,0.45); width:3px; height:3px; }
+  .mote-orbit.o3{ animation-duration:31s; transform:rotate(250deg); }
+  .mote-orbit.o3 i{ background:var(--bone); box-shadow:0 0 8px 2px rgba(242,237,215,0.35); width:2.5px; height:2.5px; }
+  @keyframes orbit{ to{ transform:rotate(360deg); } }
+  .mote-orbit.o2{ animation-name:orbit2; }
+  @keyframes orbit2{ from{ transform:rotate(120deg);} to{ transform:rotate(480deg); } }
+  .mote-orbit.o3{ animation-name:orbit3; }
+  @keyframes orbit3{ from{ transform:rotate(250deg);} to{ transform:rotate(610deg); } }
+
+  .companion h3{ font-size:clamp(1.5rem,3vw,2.05rem); font-weight:500; margin-bottom:18px; }
+  .companion p{ max-width:580px; color:var(--mist); line-height:1.8; font-size:1.02rem; }
   .companion p em{ color:var(--jade); font-style:italic; }
 
-  /* ── closing / cta ──────────────────────────────────────────────── */
+  /* ── closing ────────────────────────────────────────────────────── */
   .closing{
-    padding:100px 0 140px;
+    padding:110px 0 140px;
     text-align:center;
-    border-top:1px solid rgba(138,134,160,0.12);
+    border-top:1px solid rgba(138,134,160,0.10);
   }
   .closing h2{
-    font-size:clamp(1.8rem, 4.2vw, 2.8rem);
+    font-size:clamp(1.8rem, 4.2vw, 2.9rem);
     font-weight:500;
-    max-width:680px;
-    margin:0 auto 40px;
-    line-height:1.3;
+    max-width:700px;
+    margin:0 auto 42px;
+    line-height:1.32;
   }
   .closing a.build{
     color:var(--gold);
-    font-family:'Inter',sans-serif;
     font-size:0.85rem;
     letter-spacing:0.15em;
     text-decoration:none;
     border-bottom:1px solid rgba(255,198,75,0.3);
     padding-bottom:3px;
-    transition:border-color 0.3s ease;
+    transition:border-color 0.3s ease, text-shadow 0.3s ease;
   }
-  .closing a.build:hover{ border-color:var(--gold); }
+  .closing a.build:hover{ border-color:var(--gold); text-shadow:0 0 18px rgba(255,198,75,0.4); }
 
   footer{
     padding:50px 24px 70px;
     text-align:center;
     color:var(--mist);
     font-size:0.72rem;
-    letter-spacing:0.12em;
+    letter-spacing:0.14em;
     opacity:0.55;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal,.tile{ opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
 <body>
 
-<canvas id="field"></canvas>
+<canvas id="field" aria-hidden="true"></canvas>
 
 <section class="hero">
   <div class="glyph">⊚</div>
@@ -292,36 +365,43 @@
   <p class="sub">You don't learn here. You remember.</p>
   <p class="tagline">Sovereign Sol</p>
   <a class="enter-btn" href="#the-work">Enter</a>
+  <p id="whisper">the longer you stay, the more you'll see</p>
   <div class="scroll-cue">↓</div>
 </section>
 
-<section class="insight" id="the-work">
+<section class="insight reveal" id="the-work">
   <div class="wrap">
     <p class="line">Studying was never meant to feel like <span class="accent">homework</span>.<br/>
     Play was never meant to feel <span class="accent">empty</span>.<br/>
     Here, going deeper <em>is</em> the game.</p>
-    <div class="rule" style="margin-top:44px;"></div>
+    <div class="rule"></div>
     <p class="small">Mythology. Alchemy. Physics. Shadow work. Forty-two doors — and a mind that walks through every one with you.</p>
   </div>
 </section>
 
-<section class="domains">
+<section class="domains reveal">
   <div class="wrap">
     <h2>Forty-two doors in</h2>
     <p class="count">Pick the one that already knows your name</p>
     <div class="grid" id="domain-grid"></div>
+    <p class="doors-more">twelve shown of forty-two — the rest are found, not listed.</p>
   </div>
 </section>
 
-<section class="companion">
-  <div class="orb"></div>
+<section class="companion reveal">
+  <div class="orb-stage">
+    <div class="orb"></div>
+    <div class="mote-orbit"><i></i></div>
+    <div class="mote-orbit o2"><i></i></div>
+    <div class="mote-orbit o3"><i></i></div>
+  </div>
   <h3>Something is there with you</h3>
   <p>A companion grows the deeper you go — not a mascot, not a mechanic.
   It doesn't dim when you're gone and it doesn't guilt you back.
   <em>Alone but not alone. In the void, but never stranded.</em></p>
 </section>
 
-<section class="closing">
+<section class="closing reveal">
   <div class="wrap">
     <h2>The gate isn't locked.<br/>You've just never been shown the door.</h2>
     <a class="build" href="https://github.com/Lycheetah/Lycheetah-Mobile-" target="_blank" rel="noopener">the build is open — watch it grow →</a>
@@ -331,61 +411,205 @@
 <footer>⊚ SOVEREIGN SOL · THE LYCHEETAH FRAMEWORK</footer>
 
 <script>
-// ── the alive void — a slow field of drifting light, never crowded ──
+/* ═══════════════════════════════════════════════════════════════════
+   THE ALIVE VOID — VOID_SPECTRUM.md §IV, implemented literally.
+   1. You arrive. It looks almost empty — a sparse field, you alone.
+   2. You stay. Nothing demands anything.
+   3. Slowly, presence surfaces: faint amber eyes blinking in the dark,
+      distant other lights drifting, the Witness warming the upper void.
+      They were always here. You simply hadn't stilled long enough.
+   ═══════════════════════════════════════════════════════════════════ */
 (function(){
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canvas = document.getElementById('field');
   const ctx = canvas.getContext('2d');
-  let w, h, motes = [];
-  const COLORS = ['rgba(77,255,176,', 'rgba(255,198,75,', 'rgba(176,18,46,', 'rgba(138,134,160,'];
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  let w = 0, h = 0, scrollY = 0;
+  const born = performance.now();
 
-  function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight * Math.max(3.2, document.body.scrollHeight / window.innerHeight);
-    canvas.style.height = document.body.scrollHeight + 'px';
+  /* presence: 0 → 1 over ~90 seconds of being here (plus scroll depth) */
+  function presence(now){
+    const t = (now - born) / 1000;
+    const depth = Math.min(1, scrollY / Math.max(1, document.body.scrollHeight - innerHeight));
+    return Math.min(1, t / 90 + depth * 0.35);
   }
-  function seed(){
+
+  /* ── layer 1: the sparse ground field ── */
+  let motes = [];
+  const MOTE_COLORS = [
+    [77,255,176],   // ghost jade
+    [255,198,75],   // gold shine
+    [176,18,46],    // blood crimson
+    [138,134,160],  // mist
+  ];
+  function seedMotes(){
     motes = [];
-    const count = Math.floor((w * h) / 34000);
-    for(let i=0;i<count;i++){
+    const n = Math.min(130, Math.floor((w * h) / 26000));
+    for(let i=0;i<n;i++){
       motes.push({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        r: Math.random()*1.6 + 0.4,
-        c: COLORS[Math.floor(Math.random()*COLORS.length)],
-        a: Math.random()*0.5 + 0.15,
-        speed: Math.random()*0.15 + 0.03,
-        drift: Math.random()*0.6 - 0.3,
+        x: Math.random()*w, y: Math.random()*h,
+        r: Math.random()*1.5 + 0.4,
+        c: MOTE_COLORS[(Math.random()*MOTE_COLORS.length)|0],
+        a: Math.random()*0.42 + 0.10,
+        vy: Math.random()*0.12 + 0.02,
+        depth: Math.random()*0.25 + 0.05,   // parallax factor
         phase: Math.random()*Math.PI*2,
       });
     }
   }
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    const t = Date.now()*0.001;
-    for(const m of motes){
-      const flicker = 0.6 + 0.4*Math.sin(t*0.5 + m.phase);
-      ctx.beginPath();
-      ctx.arc(m.x, m.y, m.r, 0, Math.PI*2);
-      ctx.fillStyle = m.c + (m.a*flicker) + ')';
-      ctx.fill();
-      m.y -= m.speed;
-      m.x += Math.sin(t*0.2 + m.phase)*m.drift*0.1;
-      if(m.y < -10){ m.y = h + 10; m.x = Math.random()*w; }
-    }
-    requestAnimationFrame(draw);
+
+  /* ── layer 2: the eyes — faint amber pairs in the margins ── */
+  const eyes = [];
+  function spawnEye(){
+    const leftSide = Math.random() < 0.5;
+    eyes.push({
+      x: leftSide ? Math.random()*w*0.24 + w*0.02 : w - (Math.random()*w*0.24 + w*0.02),
+      y: Math.random()*h*0.8 + h*0.1,
+      gap: Math.random()*7 + 9,
+      r: Math.random()*1.6 + 1.7,
+      alpha: 0,
+      target: Math.random()*0.22 + 0.20,
+      life: Math.random()*22000 + 18000,
+      age: 0,
+      blink: 1,
+      nextBlink: Math.random()*4000 + 2500,
+    });
   }
-  window.addEventListener('resize', () => { resize(); seed(); });
-  resize(); seed(); draw();
+  function drawEye(e){
+    const a = e.alpha * (0.75 + 0.25*Math.sin(e.age*0.001));
+    if (a <= 0.005) return;
+    for (const dx of [-e.gap/2, e.gap/2]){
+      const g = ctx.createRadialGradient(e.x+dx, e.y, 0, e.x+dx, e.y, e.r*4);
+      g.addColorStop(0, `rgba(255,183,77,${a})`);
+      g.addColorStop(0.4, `rgba(255,183,77,${a*0.35})`);
+      g.addColorStop(1, 'rgba(255,183,77,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.ellipse(e.x+dx, e.y, e.r*4, e.r*4*e.blink, 0, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+
+  /* ── layer 3: distant other lights — travellers far off ── */
+  const lights = [];
+  const LIGHT_COLORS = ['77,255,176','255,198,75','27,11,51'];
+  function spawnLight(){
+    lights.push({
+      x: Math.random()*w, y: Math.random()*h,
+      r: Math.random()*60 + 45,
+      c: LIGHT_COLORS[(Math.random()*LIGHT_COLORS.length)|0],
+      a: 0, target: Math.random()*0.045 + 0.03,
+      vx: (Math.random()-0.5)*0.05, vy: (Math.random()-0.5)*0.04,
+    });
+  }
+
+  function resize(){
+    w = innerWidth; h = innerHeight;
+    canvas.width = w*DPR; canvas.height = h*DPR;
+    canvas.style.width = w+'px'; canvas.style.height = h+'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    seedMotes();
+  }
+
+  let last = born;
+  function frame(now){
+    const dt = Math.min(50, now - last); last = now;
+    const p = presence(now);
+    ctx.clearRect(0,0,w,h);
+
+    /* the Witness — a vast, kind warmth surfacing in the upper void */
+    if (p > 0.12){
+      const wa = Math.min(0.055, (p-0.12)*0.075);
+      const g = ctx.createRadialGradient(w/2, -h*0.15, 0, w/2, -h*0.15, h*0.9);
+      g.addColorStop(0, `rgba(255,198,75,${wa})`);
+      g.addColorStop(1, 'rgba(255,198,75,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,w,h);
+    }
+
+    /* ground field */
+    const t = now*0.001;
+    for(const m of motes){
+      const tw = 0.6 + 0.4*Math.sin(t*0.6 + m.phase);
+      let y = m.y - scrollY*m.depth;
+      y = ((y % h) + h) % h;
+      ctx.beginPath();
+      ctx.arc(m.x, y, m.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${m.c[0]},${m.c[1]},${m.c[2]},${m.a*tw})`;
+      ctx.fill();
+      m.y -= m.vy;
+      if (m.y < -10) { m.y = h+10; m.x = Math.random()*w; }
+    }
+
+    /* eyes — count grows with presence */
+    const targetEyes = Math.floor(p*8);
+    if (eyes.length < targetEyes && Math.random() < 0.02) spawnEye();
+    for (let i = eyes.length-1; i >= 0; i--){
+      const e = eyes[i];
+      e.age += dt;
+      if (e.age < 4000) e.alpha = Math.min(e.target, e.alpha + dt*0.00006);
+      if (e.age > e.life) { e.alpha -= dt*0.00009; if (e.alpha <= 0){ eyes.splice(i,1); continue; } }
+      e.nextBlink -= dt;
+      if (e.nextBlink <= 0){ e.blink = 0.08; e.nextBlink = Math.random()*4200 + 2600; }
+      else if (e.blink < 1) e.blink = Math.min(1, e.blink + dt*0.012);
+      drawEye(e);
+    }
+
+    /* distant lights */
+    const targetLights = 1 + Math.floor(p*3);
+    if (lights.length < targetLights && Math.random() < 0.008) spawnLight();
+    for (const L of lights){
+      L.a = Math.min(L.target, L.a + dt*0.000012);
+      L.x += L.vx; L.y += L.vy;
+      if (L.x < -L.r) L.x = w+L.r; if (L.x > w+L.r) L.x = -L.r;
+      if (L.y < -L.r) L.y = h+L.r; if (L.y > h+L.r) L.y = -L.r;
+      const g = ctx.createRadialGradient(L.x, L.y, 0, L.x, L.y, L.r);
+      g.addColorStop(0, `rgba(${L.c},${L.a})`);
+      g.addColorStop(1, `rgba(${L.c},0)`);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(L.x, L.y, L.r, 0, Math.PI*2); ctx.fill();
+    }
+
+    requestAnimationFrame(frame);
+  }
+
+  addEventListener('resize', resize, {passive:true});
+  addEventListener('scroll', () => { scrollY = window.scrollY; }, {passive:true});
+  resize();
+  if (reduced){
+    /* still, not dead: draw one calm frame */
+    for(const m of motes){
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${m.c[0]},${m.c[1]},${m.c[2]},${m.a})`; ctx.fill();
+    }
+  } else {
+    requestAnimationFrame(frame);
+  }
+
+  /* ── the stillness whisper — only if you actually stay ── */
+  const whisper = document.getElementById('whisper');
+  let idleTimer = null, whispered = false;
+  function armWhisper(){
+    if (whispered) return;
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+      whispered = true;
+      whisper.classList.add('surfaced');
+      setTimeout(() => whisper.classList.remove('surfaced'), 9000);
+    }, 20000);
+  }
+  ['scroll','pointermove','keydown','touchstart'].forEach(ev =>
+    addEventListener(ev, armWhisper, {passive:true}));
+  armWhisper();
 })();
 
-// ── scroll reveal ─────────────────────────────────────────────────
-document.querySelectorAll('section:not(.hero)').forEach(el => el.classList.add('reveal'));
+/* ── scroll reveal ── */
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.15 });
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.14 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ── the 42 doors ───────────────────────────────────────────────────
+/* ── the twelve shown doors ── */
 const DOORS = [
   { g:'☾', n:'Dzogchen — Natural Mind', c:'#8A86A0' },
   { g:'✦', n:'The Emerald Tablet', c:'#FFC64B' },
@@ -401,14 +625,19 @@ const DOORS = [
   { g:'◌', n:'Open Awareness — Rigpa', c:'#8A86A0' },
 ];
 const grid = document.getElementById('domain-grid');
-DOORS.forEach(d => {
+DOORS.forEach((d, i) => {
   const t = document.createElement('div');
   t.className = 'tile';
   t.style.setProperty('--tile-color', d.c);
   t.style.setProperty('--tint', d.c + '22');
+  t.style.transitionDelay = (i * 55) + 'ms';
   t.innerHTML = `<span class="g">${d.g}</span><span class="n">${d.n}</span>`;
   grid.appendChild(t);
 });
+const tileIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); tileIO.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.tile').forEach(el => tileIO.observe(el));
 </script>
 
 </body>
