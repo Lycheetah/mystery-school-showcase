@@ -1214,11 +1214,22 @@ const DOORS = [
 })();
 
 /* ═══════════════ TALK TO THE SCHOOL ═══════════════
-   The chat box calls the school's answer-only brain (serve_public.py). Set
-   SOEL_BRAIN to that brain's public URL. Until it is online, the box gracefully
-   sends people to X instead — never a broken form, never a fake answer. */
+   The chat box calls the school's answer-only brain (serve_public.py). Until it is
+   online, the box gracefully sends people to X instead — never a broken form,
+   never a fake answer.
+
+   THE URL IS NOT HARDCODED, ON PURPOSE. The brain is exposed through a cloudflared
+   QUICK tunnel, which mints a brand-new random hostname on every restart. A baked-in
+   constant went stale the first time the box rebooted and the live chat quietly died
+   (measured 2026-07-25 — it had rotated twice). So the URL lives in brain.json beside
+   this file, republished automatically by SOEL_VESPERA/scripts/publish_brain.py, and
+   the page reads it at load. Tunnel remints -> site heals itself within ~2 minutes. */
 (function(){
-  const SOEL_BRAIN = "https://amber-magazine-equity-wma.trycloudflare.com";   // ← put the brain's public URL here (e.g. https://ask.yoursite.workers.dev). empty = X fallback.
+  let SOEL_BRAIN = "";                 // resolved from brain.json below; "" = X fallback
+  const BRAIN_READY = fetch("brain.json?t=" + Date.now(), {cache:"no-store"})
+    .then(r => r.ok ? r.json() : null)
+    .then(d => { SOEL_BRAIN = (d && d.brain) || ""; })
+    .catch(() => { SOEL_BRAIN = ""; });
   const X_HANDLES = {school:"SOELAAIMS", ouravelith:"OuraVelith", lycheetah:"lycheetahcat"};
 
   const chat = document.getElementById('chat');
