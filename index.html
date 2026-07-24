@@ -427,6 +427,54 @@
     *{animation:none !important;transition:none !important;}
     .reveal,.door,.hero h1 .L,.hero .sub,.hero .cue,.hero .super{opacity:1 !important;transform:none !important;filter:none !important;}
   }
+
+  /* ══ HERO DOWNLOAD CTA ══ */
+  .hero-cta{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:12px;
+    opacity:0;transition:opacity 1.4s ease 0.5s;}
+  .hero-cta.in{opacity:1;}
+  .hero-cta a.cta{
+    color:var(--bone);font-family:'Inter',sans-serif;font-size:0.82rem;letter-spacing:0.16em;
+    text-transform:uppercase;text-decoration:none;border:1px solid rgba(238,246,243,0.5);
+    border-radius:2px;padding:17px 40px;min-height:44px;display:inline-flex;align-items:center;
+    background:rgba(238,246,243,0.06);
+    box-shadow:0 0 30px rgba(169,219,209,0.12), inset 0 0 12px rgba(169,219,209,0.05);
+    transition:all 0.45s ease;}
+  .hero-cta a.cta:hover{border-color:rgba(238,246,243,0.98);background:rgba(238,246,243,0.13);
+    box-shadow:0 0 60px rgba(169,219,209,0.34);letter-spacing:0.2em;}
+  .hero-plat{font-family:'Inter',sans-serif;font-size:0.64rem;letter-spacing:0.22em;
+    text-transform:uppercase;color:var(--mist);opacity:0.6;}
+
+  /* ══ THE FOLD — every section minimized, opens on click (elite progressive disclosure) ══ */
+  section.folded{padding:0!important;min-height:0!important;border-top:1px solid rgba(169,219,209,0.13);}
+  section.folded:last-of-type{border-bottom:1px solid rgba(169,219,209,0.13);}
+  .fold-bar{width:100%;background:none;border:none;cursor:pointer;text-align:left;
+    display:flex;align-items:baseline;gap:22px;padding:32px 4px;position:relative;z-index:3;
+    transition:padding 0.4s ease;}
+  .fold-num{font-family:'Inter',sans-serif;font-size:0.62rem;letter-spacing:0.28em;
+    color:var(--jade);opacity:0.55;flex:none;width:34px;padding-top:0.5em;}
+  .fold-title{font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:clamp(1.35rem,3.4vw,2.2rem);line-height:1.12;color:var(--bone);flex:1;
+    transition:letter-spacing 0.4s ease;}
+  .fold-title em{font-style:italic;color:var(--jade);}
+  .fold-x{font-family:'Inter',sans-serif;font-size:1.2rem;color:var(--jade);opacity:0.6;
+    flex:none;transition:transform 0.45s ease,opacity 0.3s ease;padding-top:0.3em;}
+  .fold-bar:hover .fold-title{letter-spacing:0.01em;color:#fff;}
+  .fold-bar:hover .fold-x{opacity:1;}
+  .fold-box{overflow:hidden;max-height:0;opacity:0;
+    transition:max-height 0.6s cubic-bezier(.22,.61,.36,1),opacity 0.5s ease;}
+  section.folded.open .fold-box{opacity:1;}
+  section.folded.open .fold-x{transform:rotate(45deg);opacity:1;}
+  section.folded.open .fold-bar{padding-bottom:8px;}
+  section.folded .fold-box>*{padding-bottom:44px;}
+  /* the section's own inner heading is redundant once the bar carries the title */
+  .fold-box .block>h2:first-child,.fold-box .head>h2:first-child{display:none;}
+
+  /* ══ VERITAS MONOCHROME — domain glyphs shimmer in frost, never colour ══ */
+  .realm summary .g,.door-chip .g,.ecard .g,.wing .g,.glyphline,.reg.dir{
+    color:var(--jade)!important;}
+  .realm summary .stag{color:var(--mist)!important;}
+  .realm .body{border-left-color:rgba(169,219,209,0.32)!important;}
+  .realm summary .g,.door-chip .g,.ecard .g{text-shadow:0 0 14px rgba(169,219,209,0.5)!important;  }
 </style>
 </head>
 <body>
@@ -442,6 +490,10 @@
   <p class="super" id="super">Sol · by Lycheetah</p>
   <h1 id="title" aria-label="The Mystery School"></h1>
   <p class="sub" id="sub">A living companion, a Mystery School of <b>fifty-two real disciplines</b>, and an explorable RPG world — joined into one persistent experience. You don't learn here; you remember.</p>
+  <div class="hero-cta">
+    <a class="cta" href="https://github.com/Lycheetah/SOEL-Releases/releases/latest" target="_blank" rel="noopener">↓&nbsp;&nbsp;Download the latest build</a>
+    <span class="hero-plat">Android · APK · free to begin</span>
+  </div>
   <p class="cue" id="cue">scroll — I'll come with you</p>
 </section>
 
@@ -467,7 +519,7 @@
       <p style="max-width:600px;">Sol isn't a stack of features. It's one continuity — your study, your reflection, your companion, your sky — carried whole across six rooms. What you learn in one is seen by all the others.</p>
       <div class="connect">
         <div class="node"><div class="g" style="--nc:#A45CFF;">☽</div><h3>The Stars</h3><p>A real sky, computed from astronomy. Your chart, and honest interpretation.</p></div>
-        <div class="node"><div class="g" style="--nc:#A9DBD1;">𝔏</div><h3>The School</h3><p>Fifty-three disciplines with real sources. The gravitational centre.</p></div>
+        <div class="node"><div class="g" style="--nc:#A9DBD1;">𝔏</div><h3>The School</h3><p>Fifty-two disciplines with real sources. The gravitational centre.</p></div>
         <div class="node"><div class="g" style="--nc:#EEF6F3;">⊚</div><h3>Sol</h3><p>The partner who remembers the thread and sees across every room.</p></div>
         <div class="node"><div class="g" style="--nc:#D7E7E2;">✦</div><h3>The Companion</h3><p>A presence that grows by what you actually study. Never guilts you back.</p></div>
         <div class="node"><div class="g" style="--nc:#6C8EFF;">⊼</div><h3>The Sanctum</h3><p>A private room to reflect, and be witnessed. Local, not a dashboard.</p></div>
@@ -508,7 +560,7 @@
       <div class="body">
         <p class="lede">The deepest room, and the source of everything the world will become. Real sources, honest blanks, and care built in.</p>
         <ul class="flist">
-          <li><b>53 domains and 636 subjects</b> — the School counts its own size from the registry.</li>
+          <li><b>52 domains and 636 subjects</b> — the School counts its own size from the registry.</li>
           <li>Five wings: <b>INNER, OUTER, THRESHOLD, VOID and AIVOID</b>.</li>
           <li>The <b>Magister</b> — the School's resident keeper, there to consult.</li>
           <li><b>Dive</b> — tap a domain, then a subject, into a lesson written for the depth you're ready for.</li>
@@ -599,7 +651,7 @@
   <div class="wrap">
     <div class="head reveal">
       <p class="kicker">The Doors</p>
-      <h2>Fifty-three ways in</h2>
+      <h2>Fifty-two ways in</h2>
       <p style="color:var(--read);line-height:1.8;">Every domain is a real discipline with real sources — no watering down, no woo, no lectures. Named and coloured exactly as they live in the School's code. Open a wing; tap a door — Sol answers.</p>
       <p id="door-total" class="doors-more" style="margin-top:14px;"></p>
     </div>
@@ -1229,6 +1281,54 @@ const DOORS = [
     }
     btn.disabled = false; input.focus();
   });
+})();
+</script>
+
+<script>
+/* ═══ THE FOLD — every section starts minimized; click a title to open it.
+   Elite progressive disclosure: the whole page reads in a breath, and depth is
+   one tap away. Hero and closing stay open; only the .panel sections fold. ═══ */
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var panels = document.querySelectorAll('main section:not(.hero):not(.closing)');
+  panels.forEach(function(sec, i){
+    sec.classList.add('folded');                // fold EVERY section, not just .panel
+    var h2 = sec.querySelector('h2');
+    var title = h2 ? h2.innerHTML : ('Passage ' + (i+1));
+    if (h2) h2.remove();                        // the bar carries the title now
+    var box = document.createElement('div');
+    box.className = 'fold-box';
+    while (sec.firstChild) box.appendChild(sec.firstChild);
+    var bar = document.createElement('button');
+    bar.type = 'button';
+    bar.className = 'fold-bar';
+    bar.setAttribute('aria-expanded', 'false');
+    bar.innerHTML =
+      '<span class="fold-num">' + ('0'+(i+1)).slice(-2) + '</span>' +
+      '<span class="fold-title">' + title + '</span>' +
+      '<span class="fold-x" aria-hidden="true">＋</span>';
+    sec.appendChild(bar);
+    sec.appendChild(box);
+    bar.addEventListener('click', function(){
+      var open = sec.classList.toggle('open');
+      bar.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open){
+        sec.querySelectorAll('.reveal').forEach(function(r){ r.classList.add('in'); });
+        if (reduce){ box.style.maxHeight = 'none'; return; }
+        box.style.maxHeight = box.scrollHeight + 'px';
+        setTimeout(function(){ if (sec.classList.contains('open')) box.style.maxHeight = 'none'; }, 640);
+      } else {
+        if (reduce){ box.style.maxHeight = '0px'; return; }
+        box.style.maxHeight = box.scrollHeight + 'px';
+        requestAnimationFrame(function(){ box.style.maxHeight = '0px'; });
+      }
+    });
+  });
+  document.documentElement.classList.add('folds');
+  // reveal the hero download button after the title settles
+  setTimeout(function(){
+    var hc = document.querySelector('.hero-cta'); if (hc) hc.classList.add('in');
+  }, 900);
 })();
 </script>
 
