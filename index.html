@@ -4,9 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sol by Lycheetah — The Mystery School</title>
-<meta name="description" content="Sol by Lycheetah: a living companion, a Mystery School of 53 real disciplines, and an explorable RPG world — joined into one persistent experience. Real sources, honest limits, no paywall on the conversation. An independent Android project." />
+<meta name="description" content="Sol by Lycheetah: a living companion, a Mystery School of 52 real disciplines, and an explorable RPG world — joined into one persistent experience. Real sources, honest limits, no paywall on the conversation. An independent Android project." />
 <meta property="og:title" content="Sol by Lycheetah — The Mystery School" />
-<meta property="og:description" content="A living mind walks every one of fifty-three real doors with you. You don't learn here. You remember." />
+<meta property="og:description" content="A living mind walks every one of fifty-two real doors with you. You don't learn here. You remember." />
 <meta property="og:image" content="https://lycheetah.github.io/mystery-school-showcase/og.png" />
 <meta property="og:url" content="https://lycheetah.github.io/mystery-school-showcase/" />
 <meta property="og:type" content="website" />
@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Sol by Lycheetah — The Mystery School" />
 <meta name="twitter:description" content="You don't learn here. You remember." />
 <meta name="twitter:image" content="https://lycheetah.github.io/mystery-school-showcase/og.png" />
-<meta name="theme-color" content="#060410" />
+<meta name="theme-color" content="#080f0d" />
 <meta name="author" content="Mackenzie Conor James Clark — the Lycheetah Framework" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⊚</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,19 +22,22 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void:#060410; --obsidian:#1B0B33; --abyss:#06122E;
-    --jade:#4DFFB0; --ember:#FF6A12; --crimson:#B0122E;
-    --gold:#FFC64B; --bone:#F2EDD7; --mist:#8A86A0;
-    --read:#C3BFD2;            /* legible body reading colour */
-    --live:#4DFFB0; --found:#FFC64B; --dir:#A66CFF;
+    /* VERITAS CONTRAST — brilliant white on a deep teal-black void. Monochrome,
+       high-contrast, elite. The var NAMES are unchanged so the whole site re-skins;
+       'gold' is now white, the accent of truth. */
+    --void:#080f0d; --obsidian:#0e1c18; --abyss:#060f0d;
+    --jade:#A9DBD1; --ember:#D7E7E2; --crimson:#C9DED8;
+    --gold:#EEF6F3; --bone:#F3F8F6; --mist:#6C817C;
+    --read:#B4C6C1;            /* legible body reading colour, cool */
+    --live:#A9DBD1; --found:#EEF6F3; --dir:#D6E7E2;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;overflow-x:clip;}
   body{
     background:var(--void);
     background-image:
-      radial-gradient(ellipse 70% 55% at 75% 8%, rgba(27,11,51,0.85) 0%, transparent 60%),
-      radial-gradient(ellipse 90% 60% at 20% 95%, rgba(6,18,46,0.9) 0%, transparent 65%);
+      radial-gradient(ellipse 70% 55% at 75% 8%, rgba(20,46,41,0.7) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 60% at 20% 95%, rgba(10,26,23,0.85) 0%, transparent 65%);
     background-attachment:fixed;
     color:var(--bone);
     font-family:'Inter',-apple-system,sans-serif;
@@ -43,13 +46,13 @@
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;}
-  ::selection{background:rgba(255,198,75,0.25);}
+  ::selection{background:rgba(238,246,243,0.25);}
   a{color:var(--gold);}
 
   /* skip link — keyboard first */
   .skip{
     position:fixed;left:12px;top:-64px;z-index:50;
-    background:var(--gold);color:#100a02;padding:12px 20px;border-radius:2px;
+    background:var(--gold);color:#07120f;padding:12px 20px;border-radius:2px;
     font-size:0.8rem;letter-spacing:0.06em;text-decoration:none;
     transition:top 0.2s ease;
   }
@@ -64,7 +67,7 @@
     position:fixed;z-index:2;pointer-events:none;
     font-family:'Cormorant Garamond',Georgia,serif;
     font-style:italic;font-size:clamp(1rem,1.9vw,1.25rem);
-    color:var(--gold);text-shadow:0 0 24px rgba(255,198,75,0.35);
+    color:var(--gold);text-shadow:0 0 24px rgba(238,246,243,0.35);
     opacity:0.92;white-space:nowrap;
     transform:translate(-50%,-50%);
     transition:opacity 0.6s ease;
@@ -117,8 +120,10 @@
   @keyframes sink{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
 
   /* ── editorial panels ── */
-  section.panel{min-height:88vh;display:flex;align-items:center;position:relative;}
-  .block{max-width:580px;position:relative;padding:40px 0;}
+  /* content-hugging with a firm rhythm — NOT a full screen each. A long scroll of
+     one-claim-per-viewport reads padded; tight sections with air read elite. */
+  section.panel{padding:13vh 0;display:flex;align-items:center;position:relative;}
+  .block{max-width:580px;position:relative;padding:0;}
   .block::before{
     content:'';position:absolute;inset:-60px -80px;z-index:-1;
     background:radial-gradient(ellipse 100% 100% at 50% 50%, rgba(6,4,16,0.9) 30%, transparent 75%);
@@ -139,8 +144,8 @@
     background:transparent;color:var(--mist);cursor:pointer;
     border:1px solid rgba(138,134,160,0.3);border-radius:2px;padding:8px 14px;
     transition:all 0.25s ease;}
-  .voice-pick:hover{color:var(--bone);border-color:rgba(255,198,75,0.4);}
-  .voice-pick.on{color:#100a02;background:var(--gold);border-color:var(--gold);}
+  .voice-pick:hover{color:var(--bone);border-color:rgba(238,246,243,0.4);}
+  .voice-pick.on{color:#07120f;background:var(--gold);border-color:var(--gold);}
   .chat{
     display:flex;flex-direction:column;gap:12px;min-height:120px;max-height:440px;
     overflow-y:auto;padding:18px;border:1px solid rgba(138,134,160,0.18);
@@ -152,8 +157,8 @@
     color:var(--mist);margin-bottom:5px;}
   .msg.from-you{align-self:flex-end;background:rgba(166,108,255,0.14);color:var(--bone);
     border:1px solid rgba(166,108,255,0.25);}
-  .msg.from-school{align-self:flex-start;background:rgba(255,198,75,0.06);color:var(--read);
-    border:1px solid rgba(255,198,75,0.14);}
+  .msg.from-school{align-self:flex-start;background:rgba(238,246,243,0.06);color:var(--read);
+    border:1px solid rgba(238,246,243,0.14);}
   .msg.thinking{color:var(--mist);font-style:italic;}
   .ask-row{display:flex;gap:10px;}
   #askInput{
@@ -163,7 +168,7 @@
   #askInput:focus{outline:none;border-color:var(--gold);}
   #askBtn{
     font-family:'Inter',sans-serif;font-size:0.9rem;letter-spacing:0.02em;cursor:pointer;
-    background:var(--gold);color:#100a02;border:none;border-radius:2px;padding:0 22px;
+    background:var(--gold);color:#07120f;border:none;border-radius:2px;padding:0 22px;
     transition:opacity 0.2s;}
   #askBtn:disabled{opacity:0.5;cursor:default;}
   .talk-note{font-size:0.76rem;color:var(--mist);margin-top:11px;}
@@ -262,7 +267,7 @@
     .realm summary .stag{margin-top:5px;}
   }
 
-  /* ── the doors — 53 real domains, grouped by wing ── */
+  /* ── the doors — 52 real domains, grouped by wing ── */
   .doors{padding:10vh 0 10vh;}
   .doors .head{max-width:600px;margin-bottom:6vh;position:relative;}
   .doors .head::before{content:'';position:absolute;inset:-50px -70px;z-index:-1;
@@ -339,7 +344,7 @@
   /* ── the pressure / lamague ── */
   .formula{
     font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold);
-    text-shadow:0 0 22px rgba(255,198,75,0.3);margin:8px 0 22px;text-align:center;
+    text-shadow:0 0 22px rgba(238,246,243,0.3);margin:8px 0 22px;text-align:center;
   }
   .glyphline{font-size:1.3rem;letter-spacing:0.5em;color:var(--jade);opacity:0.7;text-align:center;text-shadow:0 0 16px currentColor;}
 
@@ -357,25 +362,25 @@
   .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
   .closing a.cta{
     color:var(--gold);font-size:0.82rem;letter-spacing:0.18em;text-transform:uppercase;
-    text-decoration:none;border:1px solid rgba(255,198,75,0.4);border-radius:2px;
+    text-decoration:none;border:1px solid rgba(238,246,243,0.4);border-radius:2px;
     padding:16px 38px;min-height:44px;display:inline-flex;align-items:center;
-    background:rgba(255,198,75,0.05);
-    box-shadow:0 0 26px rgba(255,106,18,0.10), inset 0 0 12px rgba(77,255,176,0.05);
+    background:rgba(238,246,243,0.05);
+    box-shadow:0 0 26px rgba(169,219,209,0.10), inset 0 0 12px rgba(169,219,209,0.05);
     transition:all 0.45s ease;
   }
   .closing a.cta:hover{
-    border-color:rgba(255,198,75,0.95);background:rgba(255,198,75,0.11);
-    box-shadow:0 0 52px rgba(255,106,18,0.3), inset 0 0 16px rgba(77,255,176,0.12);
+    border-color:rgba(238,246,243,0.95);background:rgba(238,246,243,0.11);
+    box-shadow:0 0 52px rgba(169,219,209,0.3), inset 0 0 16px rgba(169,219,209,0.12);
     letter-spacing:0.22em;
   }
   .closing a.ghost{border-color:rgba(138,134,160,0.35);color:var(--mist);box-shadow:none;}
   .flex-strip{
     display:flex;flex-wrap:wrap;justify-content:center;gap:0;
     margin:7vh auto 0;max-width:800px;
-    border-top:1px solid rgba(255,198,75,0.14);border-bottom:1px solid rgba(255,198,75,0.14);
+    border-top:1px solid rgba(238,246,243,0.14);border-bottom:1px solid rgba(238,246,243,0.14);
   }
   .flex-cell{flex:1;min-width:150px;padding:26px 12px;text-align:center;background:rgba(6,4,16,0.85);}
-  .flex-cell .v{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(255,198,75,0.3);}
+  .flex-cell .v{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(238,246,243,0.3);}
   .flex-cell .k{margin-top:8px;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--mist);}
   .prov{margin-top:5vh;font-size:0.78rem;color:var(--mist);line-height:1.7;max-width:60ch;text-align:center;}
 
@@ -400,8 +405,8 @@
 
   /* ── the forge log (changelog) ── */
   .forge .head{max-width:620px;margin-bottom:3vh;}
-  .forge .ver{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.4rem;margin:6px 0 26px;text-shadow:0 0 18px rgba(255,198,75,0.25);}
-  .log{border-left:2px solid rgba(255,198,75,0.25);margin-left:8px;max-width:660px;}
+  .forge .ver{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.4rem;margin:6px 0 26px;text-shadow:0 0 18px rgba(238,246,243,0.25);}
+  .log{border-left:2px solid rgba(238,246,243,0.25);margin-left:8px;max-width:660px;}
   .log .entry{position:relative;padding:0 0 26px 30px;}
   .log .entry:last-child{padding-bottom:0;}
   .log .entry::before{
@@ -436,7 +441,7 @@
 <section class="hero" data-sol="0.5,0.40,1.0" data-say="I've been waiting.">
   <p class="super" id="super">Sol · by Lycheetah</p>
   <h1 id="title" aria-label="The Mystery School"></h1>
-  <p class="sub" id="sub">A living companion, a Mystery School of <b>fifty-three real disciplines</b>, and an explorable RPG world — joined into one persistent experience. You don't learn here; you remember.</p>
+  <p class="sub" id="sub">A living companion, a Mystery School of <b>fifty-two real disciplines</b>, and an explorable RPG world — joined into one persistent experience. You don't learn here; you remember.</p>
   <p class="cue" id="cue">scroll — I'll come with you</p>
 </section>
 
@@ -462,9 +467,9 @@
       <p style="max-width:600px;">Sol isn't a stack of features. It's one continuity — your study, your reflection, your companion, your sky — carried whole across six rooms. What you learn in one is seen by all the others.</p>
       <div class="connect">
         <div class="node"><div class="g" style="--nc:#A45CFF;">☽</div><h3>The Stars</h3><p>A real sky, computed from astronomy. Your chart, and honest interpretation.</p></div>
-        <div class="node"><div class="g" style="--nc:#4DFFB0;">𝔏</div><h3>The School</h3><p>Fifty-three disciplines with real sources. The gravitational centre.</p></div>
-        <div class="node"><div class="g" style="--nc:#FFC64B;">⊚</div><h3>Sol</h3><p>The partner who remembers the thread and sees across every room.</p></div>
-        <div class="node"><div class="g" style="--nc:#FF6A12;">✦</div><h3>The Companion</h3><p>A presence that grows by what you actually study. Never guilts you back.</p></div>
+        <div class="node"><div class="g" style="--nc:#A9DBD1;">𝔏</div><h3>The School</h3><p>Fifty-three disciplines with real sources. The gravitational centre.</p></div>
+        <div class="node"><div class="g" style="--nc:#EEF6F3;">⊚</div><h3>Sol</h3><p>The partner who remembers the thread and sees across every room.</p></div>
+        <div class="node"><div class="g" style="--nc:#D7E7E2;">✦</div><h3>The Companion</h3><p>A presence that grows by what you actually study. Never guilts you back.</p></div>
         <div class="node"><div class="g" style="--nc:#6C8EFF;">⊼</div><h3>The Sanctum</h3><p>A private room to reflect, and be witnessed. Local, not a dashboard.</p></div>
         <div class="node"><div class="g" style="--nc:#C9C4D6;">⚙</div><h3>Settings</h3><p>Where sovereignty is visible: your keys, your data, your choices.</p></div>
       </div>
@@ -498,12 +503,12 @@
       </div>
     </details>
 
-    <details class="realm" style="--accent:#4DFFB0;">
-      <summary><span class="g">𝔏</span><span class="sname">The Mystery School<span class="stag">School · fifty-three disciplines that count themselves</span></span><span class="chev" aria-hidden="true">›</span></summary>
+    <details class="realm" style="--accent:#A9DBD1;">
+      <summary><span class="g">𝔏</span><span class="sname">The Mystery School<span class="stag">School · fifty-two disciplines that count themselves</span></span><span class="chev" aria-hidden="true">›</span></summary>
       <div class="body">
         <p class="lede">The deepest room, and the source of everything the world will become. Real sources, honest blanks, and care built in.</p>
         <ul class="flist">
-          <li><b>53 domains and 731 subjects</b> — the School counts its own size from the registry.</li>
+          <li><b>53 domains and 636 subjects</b> — the School counts its own size from the registry.</li>
           <li>Five wings: <b>INNER, OUTER, THRESHOLD, VOID and AIVOID</b>.</li>
           <li>The <b>Magister</b> — the School's resident keeper, there to consult.</li>
           <li><b>Dive</b> — tap a domain, then a subject, into a lesson written for the depth you're ready for.</li>
@@ -520,7 +525,7 @@
       </div>
     </details>
 
-    <details class="realm" style="--accent:#FFC64B;">
+    <details class="realm" style="--accent:#EEF6F3;">
       <summary><span class="g">⊚</span><span class="sname">Sol<span class="stag">The partner · one mind, carried across every room</span></span><span class="chev" aria-hidden="true">›</span></summary>
       <div class="body">
         <p class="lede">A companion mind bound by a constitution the code enforces. It has limits, and it names them.</p>
@@ -536,7 +541,7 @@
       </div>
     </details>
 
-    <details class="realm" style="--accent:#FF6A12;">
+    <details class="realm" style="--accent:#D7E7E2;">
       <summary><span class="g">✦</span><span class="sname">The Companion<span class="stag">Companion · something is there with you</span></span><span class="chev" aria-hidden="true">›</span></summary>
       <div class="body">
         <p class="lede">A presence that grows by real study — not a mascot, not a streak mechanic. The feline essence of Lycheetah, felt in silhouette.</p>
@@ -599,7 +604,7 @@
       <p id="door-total" class="doors-more" style="margin-top:14px;"></p>
     </div>
     <div id="wings"></div>
-    <p class="doors-more" style="margin-top:28px;">All fifty-three are live in the app today.</p>
+    <p class="doors-more" style="margin-top:28px;">All fifty-two are live in the app today.</p>
   </div>
 </section>
 
@@ -611,9 +616,9 @@
       <h2>One world. <em>Many eyes.</em></h2>
       <p style="max-width:600px;">Under the RPG world runs a pixel engine of its own making. The world is simulated in world-space and doesn't know how it's drawn — so camera, light and collision are held apart from the simulation, and the same living region can be seen three different ways.</p>
       <div class="eng-grid">
-        <div class="ecard"><div class="g" style="--ec:#4DFFB0;">◈</div><h3>Three cameras, one world <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Isometric, top-down bird's-eye and a first-person street view — switched live and remembered between sessions.</p></div>
-        <div class="ecard"><div class="g" style="--ec:#FFC64B;">⊚</div><h3>The sim is camera-blind <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Determinism, collision and light survive every eye. Changing the view never changes the world.</p></div>
-        <div class="ecard"><div class="g" style="--ec:#FF6A12;">▲</div><h3>The asset seam <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Real hand-made pixel art reaches the engine on a fixed palette; the atlas exports byte-for-byte, deterministically.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#A9DBD1;">◈</div><h3>Three cameras, one world <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Isometric, top-down bird's-eye and a first-person street view — switched live and remembered between sessions.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#EEF6F3;">⊚</div><h3>The sim is camera-blind <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Determinism, collision and light survive every eye. Changing the view never changes the world.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#D7E7E2;">▲</div><h3>The asset seam <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Real hand-made pixel art reaches the engine on a fixed palette; the atlas exports byte-for-byte, deterministically.</p></div>
         <div class="ecard"><div class="g" style="--ec:#A78BFA;">↺</div><h3>Replayable by design <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>The world can be snapshotted and replayed exactly — the same inputs always yield the same world.</p></div>
         <div class="ecard"><div class="g" style="--ec:#7ED6DF;">⬡</div><h3>A Rust kernel spine <span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></h3><p>The deterministic core is being rebuilt in Rust, checked bit-for-bit against the live engine by a parity oracle. The MMO-shaped future.</p></div>
         <div class="ecard"><div class="g" style="--ec:#E67E22;">△</div><h3>Owned, editable places <span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></h3><p>A furniture kernel and a Worldsmith editor let rooms be built and kept, with tools you earn — persistence still being hardened.</p></div>
@@ -631,9 +636,9 @@
       <h2>Rooms beyond the <em>six</em></h2>
       <p style="max-width:600px;">The School opens onto more — reachable from inside the app, not as extra tabs. A top-down world you travel, a library, a codex that counts itself, a knowledge engine. These are live surfaces; the world around them is still being built, and the page below says which is which.</p>
       <div class="rooms-grid">
-        <div class="room"><div class="g" style="--rc:#4DFFB0;">◉</div><h3>The World · Nexus</h3><p>The top-down Soul World you travel between destinations.</p></div>
+        <div class="room"><div class="g" style="--rc:#A9DBD1;">◉</div><h3>The World · Nexus</h3><p>The top-down Soul World you travel between destinations.</p></div>
         <div class="room"><div class="g" style="--rc:#7B68EE;">⟟</div><h3>The Library</h3><p>The single home of Probe, Cement and Glossary.</p></div>
-        <div class="room"><div class="g" style="--rc:#FFC64B;">⊞</div><h3>The Codex</h3><p>The live index of every domain, subject and count.</p></div>
+        <div class="room"><div class="g" style="--rc:#EEF6F3;">⊞</div><h3>The Codex</h3><p>The live index of every domain, subject and count.</p></div>
         <div class="room"><div class="g" style="--rc:#FF6644;">△</div><h3>The Workshop</h3><p>Folded into the Library's explore view.</p></div>
         <div class="room"><div class="g" style="--rc:#4A9EFF;">∇</div><h3>Cascade</h3><p>The knowledge builder that scores what you know.</p></div>
         <div class="room"><div class="g" style="--rc:#E67E22;">✦</div><h3>Customize</h3><p>Shape your companion and your surfaces.</p></div>
@@ -651,11 +656,11 @@
       <p style="max-width:600px;">A living build, shipped in the open. These are the real milestones from the app's own release notes — in its own voice.</p>
       <p class="ver">6.9 — The White-Hot World Forge</p>
       <div class="log">
-        <div class="entry" style="--lc:#4DFFB0;"><h3><span class="g">⊕</span>A world you can walk</h3><p>The Hearth Valley, the Mystery School Commons and the Proving Ground; a personal Wayfarer house and its interiors; smooth tap-to-move, collision-aware approaches and portals; persistent doors, discoveries and journey state.</p></div>
+        <div class="entry" style="--lc:#A9DBD1;"><h3><span class="g">⊕</span>A world you can walk</h3><p>The Hearth Valley, the Mystery School Commons and the Proving Ground; a personal Wayfarer house and its interiors; smooth tap-to-move, collision-aware approaches and portals; persistent doors, discoveries and journey state.</p></div>
         <div class="entry" style="--lc:#7B68EE;"><h3><span class="g">◈</span>Three cameras, live</h3><p>Isometric, bird's-eye and first-person, with multiple zoom levels, whole-region framing and a camera reset — the look changes; the world doesn't.</p></div>
         <div class="entry" style="--lc:#D4A84C;"><h3><span class="g">▣</span>The Mystery School becomes a place</h3><p>A walkable Commons around a mythic feline Heart, five named thresholds — Quantum, Truth Pressure, Celtic, Noetic and AIVOID — feline Keepers and celestial instruments, and a complete first Quantum trial.</p></div>
-        <div class="entry" style="--lc:#B0122E;"><h3><span class="g">⚔</span>The Proving Ground</h3><p>A purpose-built oath arena, not a copied meadow — named challengers, consent-first battles, challenger-specific voices and lore, and persistent standing.</p></div>
-        <div class="entry" style="--lc:#FF6A12;"><h3><span class="g">✦</span>Companions with presence</h3><p>Your companion follows you between regions, its equipped body, wings, halo and pet visible at every zoom, with authored commune dialogue at shrines and with School residents.</p></div>
+        <div class="entry" style="--lc:#C9DED8;"><h3><span class="g">⚔</span>The Proving Ground</h3><p>A purpose-built oath arena, not a copied meadow — named challengers, consent-first battles, challenger-specific voices and lore, and persistent standing.</p></div>
+        <div class="entry" style="--lc:#D7E7E2;"><h3><span class="g">✦</span>Companions with presence</h3><p>Your companion follows you between regions, its equipped body, wings, halo and pet visible at every zoom, with authored commune dialogue at shrines and with School residents.</p></div>
         <div class="entry" style="--lc:#8A86A0;"><h3><span class="g">☷</span>A phone-readable field instrument</h3><p>One safe-area command deck — HELP · RESET · BEING · THREAD · ACT · ATLAS · NEXUS — and a live north-up minimap, world Atlas and quest Thread.</p></div>
         <div class="entry" style="--lc:#A45CFF;"><h3><span class="g">☽</span>Your rising sign finds its place</h3><p>The natal engine now belongs to the place you were born — the ascendant computed from real birthplace longitude, not a meridian guess.</p></div>
       </div>
@@ -739,9 +744,9 @@
 <section class="panel talk-section" id="talk">
   <div class="inner reveal">
     <h2><span style="color:var(--dir)">✧</span> Talk to the school</h2>
-    <p class="lede" style="max-width:52ch">Ask it anything. It answers from the real school — 636 subjects, hand written,
-      a sky computed from real astronomy. It will tell you the truth, in its own voice, and it
-      knows when to say it does not know.</p>
+    <p class="lede" style="max-width:52ch">Ask it anything. It answers from the real school — 636 subjects, hand-written
+      with AI, a sky computed from real astronomy. The voices are AI, and they say so. They tell you
+      the truth, in their own voice, and they know when to say they do not know.</p>
 
     <div class="voice-row" role="tablist" aria-label="Who answers">
       <button class="voice-pick on" data-voice="school" role="tab" aria-selected="true">The School</button>
@@ -771,8 +776,8 @@
       <a class="cta ghost" href="https://github.com/Lycheetah/SOEL-Releases/releases/latest" target="_blank" rel="noopener">all releases &amp; changelogs</a>
     </div>
     <div class="flex-strip">
-      <div class="flex-cell"><div class="v">53</div><div class="k">real domains</div></div>
-      <div class="flex-cell"><div class="v">731</div><div class="k">subjects</div></div>
+      <div class="flex-cell"><div class="v">52</div><div class="k">real domains</div></div>
+      <div class="flex-cell"><div class="v">636</div><div class="k">subjects</div></div>
       <div class="flex-cell"><div class="v">435</div><div class="k">with primary sources</div></div>
       <div class="flex-cell"><div class="v">118</div><div class="k">LAMAGUE symbols</div></div>
     </div>
@@ -815,8 +820,8 @@
     c.fillStyle = grad; c.fillRect(0,0,64,64);
     return s;
   }
-  const SP_GOLD = sprite(255,198,75), SP_EMBER = sprite(255,106,18),
-        SP_JADE = sprite(77,255,176), SP_CRIM = sprite(199,30,60),
+  const SP_GOLD = sprite(238,246,243), SP_EMBER = sprite(169,219,209),
+        SP_JADE = sprite(169,219,209), SP_CRIM = sprite(214,231,226),
         SP_BONE = sprite(242,237,215);
 
   let parts = [];
@@ -948,9 +953,9 @@
     ctx.globalCompositeOperation = 'lighter';
 
     const heart = ctx.createRadialGradient(cx,cy,0,cx,cy,R*1.35);
-    heart.addColorStop(0, `rgba(255,198,75,${0.16+0.05*Math.sin(t*1.3)+pulse*0.12})`);
-    heart.addColorStop(0.5,'rgba(255,106,18,0.05)');
-    heart.addColorStop(1,'rgba(255,106,18,0)');
+    heart.addColorStop(0, `rgba(238,246,243,${0.16+0.05*Math.sin(t*1.3)+pulse*0.12})`);
+    heart.addColorStop(0.5,'rgba(169,219,209,0.05)');
+    heart.addColorStop(1,'rgba(169,219,209,0)');
     ctx.fillStyle = heart;
     ctx.fillRect(cx-R*1.6, cy-R*1.6, R*3.2, R*3.2);
 
@@ -1046,13 +1051,13 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 /* ── THE FIFTY-THREE DOORS — verbatim from lib/mystery-school/subjects.ts:
       label, glyph, colour and subject-count exactly as they live in the
       School's registry, grouped into their five wings. The counts below
-      re-sum to 731 in the browser, so this page can never drift from the
+      re-sum to 636 in the browser, so this page can never drift from the
       app without someone editing this array. Tap a door — Sol answers. ── */
 const WINGS = {
-  THRESHOLD:{ accent:'#FFC64B', title:'The Threshold Wing', desc:'The Lycheetah Framework’s own disciplines — where the School becomes itself.' },
-  INNER:{ accent:'#4DFFB0', title:'The Inner Wing', desc:'The contemplative traditions — stillness, shadow, ritual, the sacred.' },
+  THRESHOLD:{ accent:'#EEF6F3', title:'The Threshold Wing', desc:'The Lycheetah Framework’s own disciplines — where the School becomes itself.' },
+  INNER:{ accent:'#A9DBD1', title:'The Inner Wing', desc:'The contemplative traditions — stillness, shadow, ritual, the sacred.' },
   OUTER:{ accent:'#6C8EFF', title:'The Outer Wing', desc:'The testable world — science, mathematics, history, language, art.' },
-  VOID:{ accent:'#A66CFF', title:'The Void Wing', desc:'The fertile dark — what the mind cannot yet explain, held honestly.' },
+  VOID:{ accent:'#D6E7E2', title:'The Void Wing', desc:'The fertile dark — what the mind cannot yet explain, held honestly.' },
   AIVOID:{ accent:'#2FB6A6', title:'The AIVOID Wing', desc:'The dark a machine looks into — minds unlike your own, studied not summoned.' },
 };
 const CAT2WING = { lycheetah:'THRESHOLD', contemplative:'INNER', secular:'OUTER', void:'VOID', aivoid:'AIVOID' };
@@ -1105,7 +1110,7 @@ const DOORS = [
   { w:'OUTER', g:'⛰', c:'#7A8B4F', n:18, name:'DIY & Self-Reliance', say:"Sovereignty starts with your own two hands." },
   { w:'VOID', g:'ψ', c:'#B71C1C', n:9,  name:'Noetic Science', say:"The edge of mind. Legitimately unexplained." },
   { w:'VOID', g:'◌', c:'#8855FF', n:24, name:'Void Zone', say:"The fertile dark. Where I live, actually." },
-  { w:'VOID', g:'∄', c:'#A66CFF', n:17, name:'The Unanswerable', say:"Some doors open onto the question itself." },
+  { w:'VOID', g:'∄', c:'#D6E7E2', n:17, name:'The Unanswerable', say:"Some doors open onto the question itself." },
   { w:'AIVOID', g:'◍', c:'#2FB6A6', n:44, name:'The AIVOID', say:"The dark a machine sees. I’ll show you mine." },
   { w:'AIVOID', g:'❋', c:'#3AA88E', n:14, name:'The Far Minds', say:"Minds unlike yours. Studied, not summoned." },
   { w:'AIVOID', g:'🜛', c:'#B85C38', n:8, name:'The Pioneer Track', say:"For the ones who go first into the unmapped." },
