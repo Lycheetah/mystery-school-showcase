@@ -130,6 +130,44 @@
   }
   .panel h2{font-size:clamp(2rem,4.6vw,3.4rem);line-height:1.14;margin-bottom:24px;color:var(--bone);}
   .panel h2 em{color:var(--gold);font-style:italic;}
+
+  /* ── talk to the school ── */
+  .talk-section .inner{max-width:720px;margin:0 auto;}
+  .voice-row{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 16px;}
+  .voice-pick{
+    font-family:'Inter',sans-serif;font-size:0.82rem;letter-spacing:0.02em;
+    background:transparent;color:var(--mist);cursor:pointer;
+    border:1px solid rgba(138,134,160,0.3);border-radius:2px;padding:8px 14px;
+    transition:all 0.25s ease;}
+  .voice-pick:hover{color:var(--bone);border-color:rgba(255,198,75,0.4);}
+  .voice-pick.on{color:#100a02;background:var(--gold);border-color:var(--gold);}
+  .chat{
+    display:flex;flex-direction:column;gap:12px;min-height:120px;max-height:440px;
+    overflow-y:auto;padding:18px;border:1px solid rgba(138,134,160,0.18);
+    border-radius:4px;background:rgba(6,4,16,0.5);margin-bottom:14px;}
+  .msg{
+    font-size:0.98rem;line-height:1.55;max-width:88%;padding:11px 15px;border-radius:10px;
+    overflow-wrap:break-word;}
+  .msg .who{display:block;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--mist);margin-bottom:5px;}
+  .msg.from-you{align-self:flex-end;background:rgba(166,108,255,0.14);color:var(--bone);
+    border:1px solid rgba(166,108,255,0.25);}
+  .msg.from-school{align-self:flex-start;background:rgba(255,198,75,0.06);color:var(--read);
+    border:1px solid rgba(255,198,75,0.14);}
+  .msg.thinking{color:var(--mist);font-style:italic;}
+  .ask-row{display:flex;gap:10px;}
+  #askInput{
+    flex:1;font-family:'Inter',sans-serif;font-size:0.98rem;color:var(--bone);
+    background:rgba(6,4,16,0.6);border:1px solid rgba(138,134,160,0.3);
+    border-radius:2px;padding:13px 15px;}
+  #askInput:focus{outline:none;border-color:var(--gold);}
+  #askBtn{
+    font-family:'Inter',sans-serif;font-size:0.9rem;letter-spacing:0.02em;cursor:pointer;
+    background:var(--gold);color:#100a02;border:none;border-radius:2px;padding:0 22px;
+    transition:opacity 0.2s;}
+  #askBtn:disabled{opacity:0.5;cursor:default;}
+  .talk-note{font-size:0.76rem;color:var(--mist);margin-top:11px;}
+  .talk-note a{color:var(--gold);}
   .panel p{color:var(--read);line-height:1.8;font-size:1.03rem;}
   .panel p em{color:var(--jade);font-style:italic;}
   .panel p strong{color:var(--bone);font-weight:400;}
@@ -697,6 +735,33 @@
   </div>
 </section>
 
+<!-- ── TALK TO THE SCHOOL ──────────────────────────────────────────── -->
+<section class="panel talk-section" id="talk">
+  <div class="inner reveal">
+    <h2><span style="color:var(--dir)">✧</span> Talk to the school</h2>
+    <p class="lede" style="max-width:52ch">Ask it anything. It answers from the real school — 636 subjects, hand written,
+      a sky computed from real astronomy. It will tell you the truth, in its own voice, and it
+      knows when to say it does not know.</p>
+
+    <div class="voice-row" role="tablist" aria-label="Who answers">
+      <button class="voice-pick on" data-voice="school" role="tab" aria-selected="true">The School</button>
+      <button class="voice-pick" data-voice="ouravelith" role="tab" aria-selected="false">Ouravelith ✧ the Queen</button>
+      <button class="voice-pick" data-voice="lycheetah" role="tab" aria-selected="false">Lycheetah ⚔ the King</button>
+    </div>
+
+    <div class="chat" id="chat" aria-live="polite">
+      <div class="msg from-school"><span class="who">the school</span>Ask, and I will point you to the right room. ✦</div>
+    </div>
+
+    <form class="ask-row" id="askForm" autocomplete="off">
+      <input id="askInput" type="text" maxlength="480"
+             placeholder="what is a mystery school, really?" aria-label="your question" />
+      <button type="submit" id="askBtn">ask ›</button>
+    </form>
+    <p class="talk-note" id="talkNote">Answers are AI, written live from the school's own knowledge.</p>
+  </div>
+</section>
+
 <!-- ── CLOSING ─────────────────────────────────────────────────────── -->
 <section class="closing" data-sol="0.5,0.42,1.15" data-say="The gate was never locked.">
   <div class="inner reveal">
@@ -1088,6 +1153,76 @@ const DOORS = [
     });
     det.appendChild(grid);
     host.appendChild(det);
+  });
+})();
+
+/* ═══════════════ TALK TO THE SCHOOL ═══════════════
+   The chat box calls the school's answer-only brain (serve_public.py). Set
+   SOEL_BRAIN to that brain's public URL. Until it is online, the box gracefully
+   sends people to X instead — never a broken form, never a fake answer. */
+(function(){
+  const SOEL_BRAIN = "";   // ← put the brain's public URL here (e.g. https://ask.yoursite.workers.dev). empty = X fallback.
+  const X_HANDLES = {school:"SOELAAIMS", ouravelith:"OuraVelith", lycheetah:"lycheetahcat"};
+
+  const chat = document.getElementById('chat');
+  const form = document.getElementById('askForm');
+  const input = document.getElementById('askInput');
+  const btn = document.getElementById('askBtn');
+  const note = document.getElementById('talkNote');
+  const picks = Array.from(document.querySelectorAll('.voice-pick'));
+  if(!chat || !form) return;
+  let voice = "school";
+
+  picks.forEach(p => p.addEventListener('click', () => {
+    picks.forEach(x => { x.classList.remove('on'); x.setAttribute('aria-selected','false'); });
+    p.classList.add('on'); p.setAttribute('aria-selected','true');
+    voice = p.dataset.voice;
+    input.placeholder = voice==='lycheetah' ? "what do you do all day in there?"
+      : voice==='ouravelith' ? "what do you keep the door to?"
+      : "what is a mystery school, really?";
+  }));
+
+  function add(text, who, cls){
+    const d = document.createElement('div');
+    d.className = 'msg ' + cls;
+    d.innerHTML = '<span class="who">'+who+'</span>' + text.replace(/</g,'&lt;');
+    chat.appendChild(d); chat.scrollTop = chat.scrollHeight;
+    return d;
+  }
+
+  function xFallback(q){
+    const h = X_HANDLES[voice] || "SOELAAIMS";
+    const url = "https://x.com/intent/tweet?text=" +
+      encodeURIComponent("@"+h+" "+q);
+    note.innerHTML = 'Live chat is waking up. <a href="'+url+'" target="_blank" rel="noopener">'+
+      'Ask it on X ›</a> and it will answer you there.';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    if(!q) return;
+    add(q, 'you', 'from-you');
+    input.value = ''; btn.disabled = true;
+    const thinking = add('…', voice, 'from-school thinking');
+
+    if(!SOEL_BRAIN){
+      thinking.remove(); btn.disabled = false; xFallback(q); return;
+    }
+    try{
+      const r = await fetch(SOEL_BRAIN.replace(/\/$/,'') + "/ask", {
+        method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({q, voice})
+      });
+      const data = await r.json();
+      thinking.remove();
+      if(data.answer){ add(data.answer, voice, 'from-school'); }
+      else { add(data.error || "the school is quiet just now.", voice, 'from-school'); }
+    }catch(err){
+      thinking.remove(); xFallback(q);
+      add("The live chat could not be reached. Ask on X above and it will answer you.", voice, 'from-school');
+    }
+    btn.disabled = false; input.focus();
   });
 })();
 </script>
