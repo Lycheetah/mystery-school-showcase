@@ -14,7 +14,7 @@
 <meta name="twitter:title" content="Sol by Lycheetah — The Mystery School" />
 <meta name="twitter:description" content="You don't learn here. You remember." />
 <meta name="twitter:image" content="https://lycheetah.github.io/mystery-school-showcase/og.png" />
-<meta name="theme-color" content="#080f0d" />
+<meta name="theme-color" content="#000000" />
 <meta name="author" content="Mackenzie Conor James Clark — the Lycheetah Framework" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⊚</text></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,22 +22,46 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* VERITAS CONTRAST — brilliant white on a deep teal-black void. Monochrome,
-       high-contrast, elite. The var NAMES are unchanged so the whole site re-skins;
-       'gold' is now white, the accent of truth. */
-    --void:#080f0d; --obsidian:#0e1c18; --abyss:#060f0d;
-    --jade:#A9DBD1; --ember:#D7E7E2; --crimson:#C9DED8;
-    --gold:#EEF6F3; --bone:#F3F8F6; --mist:#6C817C;
-    --read:#B4C6C1;            /* legible body reading colour, cool */
-    --live:#A9DBD1; --found:#EEF6F3; --dir:#D6E7E2;
+    /* ══ VERITAS II — TRUE MONOCHROME + ONE EMBER ══════════════════════════════
+       The previous pass called itself high-contrast and was not. MEASURED: nine
+       "different" accents all sat between 0.54 and 0.93 luminance, several were
+       byte-identical (jade==live, gold==found, ember and dir one hex digit apart),
+       and every one of them was the same pale mint — so `--crimson` rendered as
+       mint. Nine variables carrying three visible values, one hue, no true black
+       and no true white anywhere. That is why it read as one flat tone.
+
+       This is the fix, and it is two rules:
+       1. A REAL LUMINANCE LADDER. Every step below is a visibly different value,
+          spaced across the whole range from 0.00 to 1.00 — not clustered at the
+          bright end. Hierarchy comes from lightness, which is what monochrome IS.
+       2. ONE hue, used sparingly. Pure white against pure black is not contrast
+          on its own; it is two ends of one axis. The ember gives the white
+          something to BE contrasted against, and it is Lycheetah's own amber, so
+          the site and the character finally share a palette.
+       Names are unchanged so the whole page re-skins from here.              */
+    --void:#000000;            /* 0.000  true black, the ground                */
+    --abyss:#050506;           /* 0.002  a hair off, for layered darks         */
+    --obsidian:#0f0f11;        /* 0.006  raised surfaces, cards                */
+    --hair:#1d1d20;            /* 0.012  hairlines and rules                   */
+    --crimson:#3d3d42;         /* 0.048  deep grey — was mint, now a real step */
+    --mist:#6b6b72;            /* 0.155  meta, labels, numbers                 */
+    --dir:#8e8e96;             /* 0.276  directive / secondary                 */
+    --read:#adadb4;            /* 0.425  body reading colour, neutral          */
+    --bone:#e6e6ea;            /* 0.800  strong text                           */
+    --gold:#ffffff;            /* 1.000  the loudest thing on the page         */
+    --found:#ffffff;
+    /* the one ember. Three intensities so accented things can still differ. */
+    --jade:#E2A044;            /* the accent proper                            */
+    --live:#F6C173;            /* brighter — live/active                       */
+    --ember:#A87226;           /* dimmer — recessive accent                    */
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;overflow-x:clip;}
   body{
     background:var(--void);
     background-image:
-      radial-gradient(ellipse 70% 55% at 75% 8%, rgba(20,46,41,0.7) 0%, transparent 60%),
-      radial-gradient(ellipse 90% 60% at 20% 95%, rgba(10,26,23,0.85) 0%, transparent 65%);
+      radial-gradient(ellipse 70% 55% at 75% 8%, rgba(30,26,20,0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 60% at 20% 95%, rgba(14,12,10,0.9) 0%, transparent 65%);
     background-attachment:fixed;
     color:var(--bone);
     font-family:'Inter',-apple-system,sans-serif;
@@ -46,13 +70,13 @@
     -webkit-font-smoothing:antialiased;
   }
   h1,h2,h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;}
-  ::selection{background:rgba(238,246,243,0.25);}
+  ::selection{background:rgba(255,255,255,0.25);}
   a{color:var(--gold);}
 
   /* skip link — keyboard first */
   .skip{
     position:fixed;left:12px;top:-64px;z-index:50;
-    background:var(--gold);color:#07120f;padding:12px 20px;border-radius:2px;
+    background:var(--gold);color:#000000;padding:12px 20px;border-radius:2px;
     font-size:0.8rem;letter-spacing:0.06em;text-decoration:none;
     transition:top 0.2s ease;
   }
@@ -64,12 +88,16 @@
 
   /* Sol's voice — one line, typed, always near the being (decorative) */
   #voice{
+    /* ⚠ this used to be positioned anywhere on screen and landed ON the fold rows,
+       overlapping headlines mid-word — it read as a broken render, not a whisper.
+       It now keeps to its own lane along the bottom, clear of the text column. */
     position:fixed;z-index:2;pointer-events:none;
+    left:50%!important;top:auto!important;bottom:26px;
     font-family:'Cormorant Garamond',Georgia,serif;
-    font-style:italic;font-size:clamp(1rem,1.9vw,1.25rem);
-    color:var(--gold);text-shadow:0 0 24px rgba(238,246,243,0.35);
-    opacity:0.92;white-space:nowrap;
-    transform:translate(-50%,-50%);
+    font-style:italic;font-size:clamp(0.92rem,1.5vw,1.08rem);
+    color:var(--mist);text-shadow:0 0 20px rgba(0,0,0,0.95);
+    opacity:0.85;white-space:nowrap;max-width:86vw;overflow:hidden;text-overflow:ellipsis;
+    transform:translateX(-50%);
     transition:opacity 0.6s ease;
   }
   #voice .caret{
@@ -90,9 +118,10 @@
   }
   .hero .super{
     font-size:0.72rem;letter-spacing:0.42em;text-transform:uppercase;
-    color:var(--jade);opacity:0;transition:opacity 1.4s ease 0.2s;margin-bottom:22px;
+    color:var(--bone);opacity:0;transition:opacity 1.4s ease 0.2s;margin-bottom:22px;
+    text-shadow:0 0 18px rgba(0,0,0,0.9);
   }
-  .hero .super.in{opacity:0.7;}
+  .hero .super.in{opacity:0.88;}
   .hero h1{
     font-size:clamp(2.2rem,7.4vw,5.4rem);
     letter-spacing:0.05em;line-height:1.04;
@@ -144,8 +173,8 @@
     background:transparent;color:var(--mist);cursor:pointer;
     border:1px solid rgba(138,134,160,0.3);border-radius:2px;padding:8px 14px;
     transition:all 0.25s ease;}
-  .voice-pick:hover{color:var(--bone);border-color:rgba(238,246,243,0.4);}
-  .voice-pick.on{color:#07120f;background:var(--gold);border-color:var(--gold);}
+  .voice-pick:hover{color:var(--bone);border-color:rgba(255,255,255,0.4);}
+  .voice-pick.on{color:#000000;background:var(--gold);border-color:var(--gold);}
   .chat{
     display:flex;flex-direction:column;gap:12px;min-height:120px;max-height:440px;
     overflow-y:auto;padding:18px;border:1px solid rgba(138,134,160,0.18);
@@ -157,8 +186,8 @@
     color:var(--mist);margin-bottom:5px;}
   .msg.from-you{align-self:flex-end;background:rgba(166,108,255,0.14);color:var(--bone);
     border:1px solid rgba(166,108,255,0.25);}
-  .msg.from-school{align-self:flex-start;background:rgba(238,246,243,0.06);color:var(--read);
-    border:1px solid rgba(238,246,243,0.14);}
+  .msg.from-school{align-self:flex-start;background:rgba(255,255,255,0.06);color:var(--read);
+    border:1px solid rgba(255,255,255,0.14);}
   .msg.thinking{color:var(--mist);font-style:italic;}
   .ask-row{display:flex;gap:10px;}
   #askInput{
@@ -168,7 +197,7 @@
   #askInput:focus{outline:none;border-color:var(--gold);}
   #askBtn{
     font-family:'Inter',sans-serif;font-size:0.9rem;letter-spacing:0.02em;cursor:pointer;
-    background:var(--gold);color:#07120f;border:none;border-radius:2px;padding:0 22px;
+    background:var(--gold);color:#000000;border:none;border-radius:2px;padding:0 22px;
     transition:opacity 0.2s;}
   #askBtn:disabled{opacity:0.5;cursor:default;}
   .talk-note{font-size:0.76rem;color:var(--mist);margin-top:11px;}
@@ -344,7 +373,7 @@
   /* ── the pressure / lamague ── */
   .formula{
     font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--gold);
-    text-shadow:0 0 22px rgba(238,246,243,0.3);margin:8px 0 22px;text-align:center;
+    text-shadow:0 0 22px rgba(255,255,255,0.3);margin:8px 0 22px;text-align:center;
   }
   .glyphline{font-size:1.3rem;letter-spacing:0.5em;color:var(--jade);opacity:0.7;text-align:center;text-shadow:0 0 16px currentColor;}
 
@@ -362,25 +391,25 @@
   .cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
   .closing a.cta{
     color:var(--gold);font-size:0.82rem;letter-spacing:0.18em;text-transform:uppercase;
-    text-decoration:none;border:1px solid rgba(238,246,243,0.4);border-radius:2px;
+    text-decoration:none;border:1px solid rgba(255,255,255,0.4);border-radius:2px;
     padding:16px 38px;min-height:44px;display:inline-flex;align-items:center;
-    background:rgba(238,246,243,0.05);
-    box-shadow:0 0 26px rgba(169,219,209,0.10), inset 0 0 12px rgba(169,219,209,0.05);
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 0 26px rgba(255,255,255,0.10), inset 0 0 12px rgba(255,255,255,0.05);
     transition:all 0.45s ease;
   }
   .closing a.cta:hover{
-    border-color:rgba(238,246,243,0.95);background:rgba(238,246,243,0.11);
-    box-shadow:0 0 52px rgba(169,219,209,0.3), inset 0 0 16px rgba(169,219,209,0.12);
+    border-color:rgba(255,255,255,0.95);background:rgba(255,255,255,0.11);
+    box-shadow:0 0 52px rgba(255,255,255,0.3), inset 0 0 16px rgba(255,255,255,0.12);
     letter-spacing:0.22em;
   }
   .closing a.ghost{border-color:rgba(138,134,160,0.35);color:var(--mist);box-shadow:none;}
   .flex-strip{
     display:flex;flex-wrap:wrap;justify-content:center;gap:0;
     margin:7vh auto 0;max-width:800px;
-    border-top:1px solid rgba(238,246,243,0.14);border-bottom:1px solid rgba(238,246,243,0.14);
+    border-top:1px solid rgba(255,255,255,0.14);border-bottom:1px solid rgba(255,255,255,0.14);
   }
   .flex-cell{flex:1;min-width:150px;padding:26px 12px;text-align:center;background:rgba(6,4,16,0.85);}
-  .flex-cell .v{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(238,246,243,0.3);}
+  .flex-cell .v{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(255,255,255,0.3);}
   .flex-cell .k{margin-top:8px;font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--mist);}
   .prov{margin-top:5vh;font-size:0.78rem;color:var(--mist);line-height:1.7;max-width:60ch;text-align:center;}
 
@@ -405,8 +434,8 @@
 
   /* ── the forge log (changelog) ── */
   .forge .head{max-width:620px;margin-bottom:3vh;}
-  .forge .ver{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.4rem;margin:6px 0 26px;text-shadow:0 0 18px rgba(238,246,243,0.25);}
-  .log{border-left:2px solid rgba(238,246,243,0.25);margin-left:8px;max-width:660px;}
+  .forge .ver{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1.4rem;margin:6px 0 26px;text-shadow:0 0 18px rgba(255,255,255,0.25);}
+  .log{border-left:2px solid rgba(255,255,255,0.25);margin-left:8px;max-width:660px;}
   .log .entry{position:relative;padding:0 0 26px 30px;}
   .log .entry:last-child{padding-bottom:0;}
   .log .entry::before{
@@ -434,19 +463,26 @@
   .hero-cta.in{opacity:1;}
   .hero-cta a.cta{
     color:var(--bone);font-family:'Inter',sans-serif;font-size:0.82rem;letter-spacing:0.16em;
-    text-transform:uppercase;text-decoration:none;border:1px solid rgba(238,246,243,0.5);
+    text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,0.5);
     border-radius:2px;padding:17px 40px;min-height:44px;display:inline-flex;align-items:center;
-    background:rgba(238,246,243,0.06);
-    box-shadow:0 0 30px rgba(169,219,209,0.12), inset 0 0 12px rgba(169,219,209,0.05);
+    background:rgba(255,255,255,0.06);
+    box-shadow:0 0 30px rgba(255,255,255,0.12), inset 0 0 12px rgba(255,255,255,0.05);
     transition:all 0.45s ease;}
-  .hero-cta a.cta:hover{border-color:rgba(238,246,243,0.98);background:rgba(238,246,243,0.13);
-    box-shadow:0 0 60px rgba(169,219,209,0.34);letter-spacing:0.2em;}
+  .hero-cta a.cta:hover{border-color:rgba(255,255,255,0.98);background:rgba(255,255,255,0.13);
+    box-shadow:0 0 60px rgba(255,255,255,0.34);letter-spacing:0.2em;}
   .hero-plat{font-family:'Inter',sans-serif;font-size:0.64rem;letter-spacing:0.22em;
     text-transform:uppercase;color:var(--mist);opacity:0.6;}
 
   /* ══ THE FOLD — every section minimized, opens on click (elite progressive disclosure) ══ */
-  section.folded{padding:0!important;min-height:0!important;border-top:1px solid rgba(169,219,209,0.13);}
-  section.folded:last-of-type{border-bottom:1px solid rgba(169,219,209,0.13);}
+  /* ⚠ display:block is LOAD-BEARING, not tidying. Several sections are display:flex
+     for their own open layout; once folded, the bar becomes a FLEX ITEM and shrinks
+     to its content, so `width:100%` on it resolves and is then shrunk away. MEASURED
+     on a 390px viewport: bars came out 142-200px wide while others were 390, which
+     jammed the ＋ against wrapped titles and made the phone read as broken. The bar
+     must own the full row whatever the section wanted to be. */
+  section.folded{padding:0!important;min-height:0!important;display:block!important;
+    border-top:1px solid rgba(255,255,255,0.13);}
+  section.folded:last-of-type{border-bottom:1px solid rgba(255,255,255,0.13);}
   .fold-bar{width:100%;background:none;border:none;cursor:pointer;text-align:left;
     display:flex;align-items:baseline;gap:22px;padding:32px 4px;position:relative;z-index:3;
     transition:padding 0.4s ease;}
@@ -456,10 +492,29 @@
     font-size:clamp(1.35rem,3.4vw,2.2rem);line-height:1.12;color:var(--bone);flex:1;
     transition:letter-spacing 0.4s ease;}
   .fold-title em{font-style:italic;color:var(--jade);}
-  .fold-x{font-family:'Inter',sans-serif;font-size:1.2rem;color:var(--jade);opacity:0.6;
-    flex:none;transition:transform 0.45s ease,opacity 0.3s ease;padding-top:0.3em;}
+  .fold-x{font-family:'Inter',sans-serif;font-size:1.2rem;color:var(--mist);opacity:0.7;
+    flex:none;transition:transform 0.45s ease,opacity 0.3s ease,color 0.3s ease;padding-top:0.3em;}
   .fold-bar:hover .fold-title{letter-spacing:0.01em;color:#fff;}
-  .fold-bar:hover .fold-x{opacity:1;}
+  .fold-bar:hover .fold-x{opacity:1;color:var(--jade);}
+
+  /* ── the three tiers. Hierarchy is carried by SIZE, WEIGHT and LIGHTNESS —
+        the three things monochrome actually has to spend.                    */
+  section.folded.lead .fold-bar{padding:44px 4px;}
+  section.folded.lead .fold-title{font-size:clamp(1.9rem,5vw,3.3rem);color:#fff;
+    letter-spacing:-0.012em;}
+  section.folded.lead .fold-num{color:var(--jade);opacity:1;}
+  /* a lead row carries a thin ember rule that grows on hover — the only moving
+     colour on the page, so the eye is told exactly where the doors are. */
+  section.folded.lead .fold-bar::after{content:"";position:absolute;left:4px;bottom:26px;
+    height:1px;width:26px;background:var(--jade);opacity:0.85;
+    transition:width 0.5s cubic-bezier(.22,.61,.36,1);}
+  section.folded.lead .fold-bar:hover::after{width:120px;}
+  section.folded.hush .fold-bar{padding:22px 4px;}
+  section.folded.hush .fold-title{font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--dir);
+    font-weight:400;}
+  section.folded.hush .fold-title em{color:var(--ember);}
+  section.folded.hush .fold-num{opacity:0.3;}
+  section.folded.hush .fold-x{font-size:0.95rem;opacity:0.45;}
   .fold-box{overflow:hidden;max-height:0;opacity:0;
     transition:max-height 0.6s cubic-bezier(.22,.61,.36,1),opacity 0.5s ease;}
   section.folded.open .fold-box{opacity:1;}
@@ -473,8 +528,8 @@
   .realm summary .g,.door-chip .g,.ecard .g,.wing .g,.glyphline,.reg.dir{
     color:var(--jade)!important;}
   .realm summary .stag{color:var(--mist)!important;}
-  .realm .body{border-left-color:rgba(169,219,209,0.32)!important;}
-  .realm summary .g,.door-chip .g,.ecard .g{text-shadow:0 0 14px rgba(169,219,209,0.5)!important;  }
+  .realm .body{border-left-color:rgba(255,255,255,0.32)!important;}
+  .realm summary .g,.door-chip .g,.ecard .g{text-shadow:0 0 16px rgba(226,160,68,0.42)!important;  }
 </style>
 </head>
 <body>
@@ -877,8 +932,10 @@
     c.fillStyle = grad; c.fillRect(0,0,64,64);
     return s;
   }
-  const SP_GOLD = sprite(238,246,243), SP_EMBER = sprite(169,219,209),
-        SP_JADE = sprite(169,219,209), SP_CRIM = sprite(214,231,226),
+  /* the dust is mostly white with warm motes through it — the same one-ember rule
+     as the palette. A field of four near-identical mints read as grey soup. */
+  const SP_GOLD = sprite(255,255,255), SP_EMBER = sprite(226,160,68),
+        SP_JADE = sprite(246,193,115), SP_CRIM = sprite(173,173,180),
         SP_BONE = sprite(242,237,215);
 
   let parts = [];
@@ -1010,9 +1067,9 @@
     ctx.globalCompositeOperation = 'lighter';
 
     const heart = ctx.createRadialGradient(cx,cy,0,cx,cy,R*1.35);
-    heart.addColorStop(0, `rgba(238,246,243,${0.16+0.05*Math.sin(t*1.3)+pulse*0.12})`);
-    heart.addColorStop(0.5,'rgba(169,219,209,0.05)');
-    heart.addColorStop(1,'rgba(169,219,209,0)');
+    heart.addColorStop(0, `rgba(255,255,255,${0.16+0.05*Math.sin(t*1.3)+pulse*0.12})`);
+    heart.addColorStop(0.5,'rgba(255,255,255,0.05)');
+    heart.addColorStop(1,'rgba(255,255,255,0)');
     ctx.fillStyle = heart;
     ctx.fillRect(cx-R*1.6, cy-R*1.6, R*3.2, R*3.2);
 
@@ -1307,8 +1364,21 @@ const DOORS = [
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var panels = document.querySelectorAll('main section:not(.hero):not(.closing)');
+  /* ══ NOT EVERY ROW IS THE SAME ROW ═══════════════════════════════════════════
+     The fold used to render all twelve sections identically, which is what made
+     the page read as one flat tone no matter what the palette did: twelve bars of
+     equal size, equal brightness, equal weight, so the eye had nowhere to land.
+     Sameness was being GENERATED, not styled.
+
+     Three tiers now. LEAD rows are the ones a stranger came for and are set loud;
+     the rest are quiet; and a couple of connective passages are set quieter still.
+     A page with no quiet has no loud.                                          */
+  var LEAD = {insight:1, realms:1, talk:1};      // what it is · the 52 · speak to it
+  var HUSH = {log:1, engine:1};                  // supporting, deliberately recessive
   panels.forEach(function(sec, i){
     sec.classList.add('folded');                // fold EVERY section, not just .panel
+    if (LEAD[sec.id]) sec.classList.add('lead');
+    else if (HUSH[sec.id]) sec.classList.add('hush');
     var h2 = sec.querySelector('h2');
     var title = h2 ? h2.innerHTML : ('Passage ' + (i+1));
     if (h2) h2.remove();                        // the bar carries the title now
