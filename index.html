@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sol by Lycheetah — The Mystery School</title>
-<meta name="description" content="Sol by Lycheetah: a living companion, a Mystery School of 52 real disciplines, and an explorable RPG world — joined into one persistent experience. Real sources, honest limits, no paywall on the conversation. An independent Android project." />
+<meta name="description" content="Sol by Lycheetah: a living companion, a Mystery School of 52 real disciplines, and a native 3D world — joined into one persistent experience across mobile and web. Real sources, honest limits, no paywall on the conversation." />
 <meta property="og:title" content="Sol by Lycheetah — The Mystery School" />
 <meta property="og:description" content="A living mind walks every one of fifty-two real doors with you. You don't learn here. You remember." />
 <meta property="og:image" content="https://lycheetah.github.io/mystery-school-showcase/og.png" />
@@ -107,7 +107,10 @@
   }
   @keyframes caret{0%,55%{opacity:1;}56%,100%{opacity:0;}}
 
-  main{position:relative;z-index:3;overflow-x:clip;}
+  main{
+    position:relative;z-index:3;overflow-x:clip;
+    display:flex;flex-direction:column;
+  }
   .wrap{max-width:1150px;margin:0 auto;padding:0 28px;}
 
   /* ── HERO ── */
@@ -420,7 +423,7 @@
   footer a{color:var(--mist);text-decoration:none;border-bottom:1px solid rgba(138,134,160,0.3);}
   footer a:hover{color:var(--gold);}
 
-  /* ── the engine — the pixel world ── */
+  /* ── the engine — the living 3D world ── */
   .engine .head{max-width:620px;margin-bottom:4vh;}
   .eng-grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));
@@ -530,26 +533,419 @@
   .realm summary .stag{color:var(--mist)!important;}
   .realm .body{border-left-color:rgba(255,255,255,0.32)!important;}
   .realm summary .g,.door-chip .g,.ecard .g{text-shadow:0 0 16px rgba(226,160,68,0.42)!important;  }
+
+  /* ══ THE SOVEREIGN FRONT DOOR ═══════════════════════════════════════════════
+     The living room is the product's strongest proof. It is never folded and the
+     entire opening now leads toward it instead of burying it in the page index. */
+  :root{
+    --chaos-red:#ff3b55;
+    --chaos-violet:#9d5cff;
+    --chaos-orange:#ff941f;
+    --chaos-green:#36e18b;
+    --chaos-ocean:#00a8c8;
+  }
+  .site-head{
+    position:fixed;z-index:30;inset:0 0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;padding:0 clamp(20px,4vw,64px);
+    background:linear-gradient(180deg,rgba(0,0,0,.94),rgba(0,0,0,.54) 68%,transparent);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  }
+  .site-brand{
+    display:flex;align-items:center;gap:12px;color:var(--bone);text-decoration:none;
+    font-family:'Cormorant Garamond',serif;font-size:1.12rem;letter-spacing:.08em;
+  }
+  .site-brand .mark{
+    width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
+    border:1px solid rgba(255,255,255,.45);color:#fff;
+    background:
+      radial-gradient(circle at 28% 24%,rgba(255,148,31,.38),transparent 38%),
+      radial-gradient(circle at 76% 74%,rgba(157,92,255,.38),transparent 42%),
+      #08080a;
+    box-shadow:
+      0 0 24px rgba(157,92,255,.16),
+      0 0 34px rgba(255,148,31,.1),
+      inset 0 0 16px rgba(255,255,255,.07);
+  }
+  .site-brand small{
+    display:block;margin-top:2px;font-family:'Inter',sans-serif;font-size:.54rem;
+    font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--mist);
+  }
+  .site-nav{display:flex;align-items:center;gap:8px;}
+  .site-nav a{
+    min-height:42px;display:inline-flex;align-items:center;justify-content:center;
+    padding:0 17px;border-radius:999px;color:var(--read);text-decoration:none;
+    font-size:.68rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;
+    border:1px solid transparent;transition:.25s ease;
+  }
+  .site-nav a:hover{color:#fff;border-color:rgba(255,255,255,.18);background:rgba(255,255,255,.05);}
+  .site-nav .talk-link{
+    color:#000;background:#fff;
+    box-shadow:
+      0 8px 30px rgba(255,255,255,.12),
+      0 0 34px rgba(157,92,255,.09);
+  }
+  .site-nav .talk-link:hover{color:#000;border-color:#fff;background:#fff;}
+
+  .hero{
+    order:-1;
+    min-height:100svh;align-items:flex-start;justify-content:center;text-align:left;
+    padding:118px clamp(24px,7vw,112px) 84px;
+    isolation:isolate;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;z-index:-2;inset:4% -12% 2% 38%;pointer-events:none;
+    background:
+      linear-gradient(118deg,transparent 0 31%,rgba(255,59,85,.18) 31.4% 35%,transparent 35.4%),
+      linear-gradient(65deg,transparent 0 45%,rgba(157,92,255,.2) 45.4% 51%,transparent 51.4%),
+      linear-gradient(145deg,transparent 0 58%,rgba(0,168,200,.16) 58.4% 63%,transparent 63.4%),
+      radial-gradient(circle at 66% 30%,rgba(255,148,31,.2),transparent 20%),
+      radial-gradient(circle at 82% 72%,rgba(54,225,139,.14),transparent 22%);
+    filter:blur(8px) saturate(1.25);
+    transform:rotate(-7deg);
+  }
+  .hero::after{
+    content:"✦";position:absolute;z-index:-1;right:8vw;top:47%;
+    color:rgba(255,255,255,.92);font-family:'Cormorant Garamond',serif;
+    font-size:clamp(9rem,24vw,26rem);line-height:.5;
+    text-shadow:
+      34px -38px 90px rgba(157,92,255,.23),
+      -42px 45px 110px rgba(0,168,200,.18),
+      0 0 2px #fff;
+    transform:translateY(-50%) rotate(9deg);
+    opacity:.82;
+  }
+  .hero-inner{width:min(610px,54vw);position:relative;z-index:4;}
+  .hero-inner::before{
+    content:"";position:absolute;z-index:-1;inset:-90px -100px;
+    background:radial-gradient(ellipse at 35% 50%,rgba(0,0,0,.94) 18%,rgba(0,0,0,.72) 48%,transparent 74%);
+    pointer-events:none;
+  }
+  .hero .super,.hero .sub,.hero-cta{opacity:1!important;}
+  .hero h1 .L{opacity:1!important;filter:none!important;transform:none!important;}
+  .hero h1 .title-word{display:inline-block;white-space:nowrap;}
+  .hero .super{margin:0 0 20px;color:var(--live);text-shadow:none;}
+  .hero h1{
+    max-width:8.8ch;font-size:clamp(4rem,8.2vw,7.6rem);
+    line-height:.83;letter-spacing:-.045em;color:#fff;text-wrap:balance;
+    text-shadow:0 4px 42px rgba(0,0,0,.9);
+  }
+  .hero .sub{
+    margin-top:30px;max-width:36ch;font-size:clamp(1.15rem,1.8vw,1.48rem);
+    line-height:1.5;color:#c5c5cb;text-wrap:pretty;
+  }
+  .hero-cta{
+    margin-top:32px;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;
+    flex-wrap:wrap;gap:10px;
+  }
+  .hero-cta a.cta{
+    min-height:50px;padding:0 24px;border-radius:999px;font-size:.68rem;
+    letter-spacing:.13em;box-shadow:none;
+  }
+  .hero-cta a.cta:first-child{order:2;background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.22);}
+  .hero-cta a.talk-hero{
+    order:1;color:#000;background:#fff;
+    border-color:#fff;box-shadow:
+      0 12px 42px rgba(255,255,255,.12),
+      14px 10px 46px rgba(157,92,255,.1),
+      -12px -8px 42px rgba(255,148,31,.08);
+  }
+  .hero-cta a.talk-hero:hover{color:#000;background:#fff;border-color:#fff;letter-spacing:.13em;}
+  .hero-plat{order:3;flex-basis:100%;padding-left:5px;margin-top:4px;}
+  .hero-proof{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:28px;
+    color:var(--mist);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .hero-proof span+span::before{content:"✦";margin-right:12px;color:var(--ember);}
+  .hero .cue{display:none;}
+
+  section.panel.talk-section{
+    order:-2;position:relative;isolation:isolate;
+    width:calc(100% - clamp(24px,7vw,112px));max-width:1280px;
+    min-height:auto;margin:94px auto clamp(84px,10vh,130px);padding:0;
+    border:1px solid rgba(255,255,255,.2);border-radius:28px;overflow:hidden;
+    background:
+      linear-gradient(118deg,transparent 0 18%,rgba(255,59,85,.12) 18.4% 21%,transparent 21.4%),
+      linear-gradient(57deg,transparent 0 64%,rgba(0,168,200,.11) 64.4% 68%,transparent 68.4%),
+      radial-gradient(circle at 7% 4%,rgba(255,148,31,.2),transparent 27%),
+      radial-gradient(circle at 93% 15%,rgba(157,92,255,.2),transparent 30%),
+      radial-gradient(circle at 82% 92%,rgba(54,225,139,.11),transparent 25%),
+      linear-gradient(145deg,rgba(17,17,20,.99),rgba(2,2,3,.99));
+    box-shadow:
+      0 38px 100px rgba(0,0,0,.65),
+      0 0 0 1px rgba(0,0,0,.7),
+      inset 0 1px 0 rgba(255,255,255,.1);
+    scroll-margin-top:88px;
+  }
+  section.panel.talk-section::before{
+    content:"";position:absolute;z-index:-1;inset:-28%;pointer-events:none;
+    background:
+      conic-gradient(from 210deg at 20% 30%,
+        transparent 0 17deg,rgba(255,148,31,.22) 18deg 25deg,transparent 26deg 72deg,
+        rgba(255,59,85,.2) 73deg 79deg,transparent 80deg 176deg,
+        rgba(157,92,255,.24) 177deg 188deg,transparent 189deg 360deg);
+    filter:blur(24px);
+    opacity:.7;
+  }
+  section.panel.talk-section::after{
+    content:"";position:absolute;z-index:0;inset:0;pointer-events:none;
+    background:
+      linear-gradient(105deg,transparent 0 74%,rgba(255,255,255,.055) 74.2% 74.5%,transparent 74.7%),
+      linear-gradient(32deg,transparent 0 30%,rgba(255,255,255,.04) 30.2% 30.5%,transparent 30.7%);
+  }
+  .talk-section .reveal{opacity:1;transform:none;}
+  .talk-section .talk-shell{position:relative;z-index:1;width:100%;padding:clamp(28px,5vw,70px);}
+  .talk-head{
+    display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:end;
+    padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .talk-head-copy{max-width:700px;}
+  .talk-head .kicker{margin-bottom:14px;color:#fff;}
+  .talk-head h2{
+    margin:0 0 16px;font-size:clamp(2.8rem,5.6vw,5.4rem);line-height:.92;
+    letter-spacing:-.035em;color:#fff;
+  }
+  .talk-head .lede{max-width:60ch!important;font-size:1rem;line-height:1.7;}
+  .live-status{
+    display:flex;align-items:center;gap:9px;align-self:start;
+    color:var(--read);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+    padding:10px 14px;border:1px solid rgba(255,255,255,.12);border-radius:999px;
+    background:rgba(0,0,0,.28);white-space:nowrap;
+  }
+  .live-status::before{
+    content:"";width:7px;height:7px;border-radius:50%;background:#8ed7a7;
+    box-shadow:0 0 14px #8ed7a7;
+  }
+  .live-status.resting::before{background:var(--ember);box-shadow:0 0 14px rgba(168,114,38,.7);}
+  .voice-row{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0 14px;
+  }
+  .voice-pick{
+    --voice-chaos:255,255,255;
+    min-height:82px;display:grid;grid-template-columns:38px 1fr;align-items:center;
+    column-gap:12px;text-align:left;padding:14px 16px;border-radius:14px;
+    border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);
+    box-shadow:inset 3px 0 0 rgba(var(--voice-chaos),.62);
+  }
+  .voice-pick:nth-child(1){--voice-chaos:255,148,31;}
+  .voice-pick:nth-child(2){--voice-chaos:157,92,255;}
+  .voice-pick:nth-child(3){--voice-chaos:0,168,200;}
+  .voice-pick .voice-glyph{
+    grid-row:1/3;width:38px;height:38px;display:grid;place-items:center;border-radius:50%;
+    color:#fff;border:1px solid rgba(var(--voice-chaos),.56);font-family:'Cormorant Garamond',serif;
+    font-size:1.1rem;
+    box-shadow:0 0 22px rgba(var(--voice-chaos),.12);
+  }
+  .voice-pick .voice-name{align-self:end;color:var(--bone);font-size:.78rem;font-weight:500;letter-spacing:.04em;}
+  .voice-pick .voice-role{align-self:start;color:var(--mist);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;}
+  .voice-pick:hover{transform:translateY(-2px);border-color:rgba(226,160,68,.38);}
+  .voice-pick.on{
+    color:#000;background:#f4f4f6;border-color:#fff;
+    box-shadow:
+      inset 4px 0 0 rgb(var(--voice-chaos)),
+      0 12px 34px rgba(var(--voice-chaos),.12);
+  }
+  .voice-pick.on .voice-name{color:#08080a;}
+  .voice-pick.on .voice-role{color:#55555d;}
+  .voice-pick.on .voice-glyph{color:#08080a;border-color:rgba(var(--voice-chaos),.74);}
+  .talk-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:14px;}
+  .conversation{
+    min-width:0;padding:14px;border-radius:18px;background:rgba(0,0,0,.38);
+    border:1px solid rgba(255,255,255,.09);
+  }
+  .chat{
+    min-height:250px;max-height:440px;margin:0 0 12px;padding:18px;border:0;border-radius:12px;
+    background:linear-gradient(180deg,rgba(255,255,255,.025),transparent);
+  }
+  .msg{padding:13px 16px;border-radius:14px;line-height:1.65;}
+  .msg.from-school{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.11);}
+  .msg.from-you{
+    color:#09090b;background:#f1f1f3;border-color:#fff;
+    box-shadow:-3px 0 0 var(--chaos-violet);
+  }
+  .ask-row{gap:8px;padding:6px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:#09090b;}
+  #askInput{min-width:0;border:0;background:transparent;padding:12px 13px;}
+  #askBtn{
+    min-height:44px;padding:0 22px;border-radius:10px;background:#fff;color:#000;
+    font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+    box-shadow:5px 5px 0 rgba(157,92,255,.45),-3px -3px 0 rgba(255,148,31,.3);
+  }
+  .talk-note{padding:0 5px;line-height:1.55;}
+  .talk-aside{
+    display:flex;flex-direction:column;justify-content:space-between;gap:30px;
+    padding:25px;border-radius:18px;border:1px solid rgba(255,255,255,.14);
+    background:
+      radial-gradient(circle at 90% 8%,rgba(157,92,255,.18),transparent 34%),
+      radial-gradient(circle at 8% 92%,rgba(0,168,200,.12),transparent 36%),
+      linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.018));
+  }
+  .talk-aside .aside-glyph{
+    font-family:'Cormorant Garamond',serif;font-size:3rem;color:#fff;
+    text-shadow:12px -8px 30px rgba(157,92,255,.65),-12px 10px 34px rgba(0,168,200,.45);
+  }
+  .talk-aside h3{font-size:1.65rem;line-height:1.05;color:#fff;margin:10px 0 12px;}
+  .talk-aside p{font-size:.85rem;line-height:1.65;color:var(--mist);}
+  .commons-link{
+    min-height:48px;display:flex;align-items:center;justify-content:space-between;
+    padding:0 16px;border-radius:12px;text-decoration:none;color:#100a03;
+    background:#fff;font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+    box-shadow:7px 7px 0 rgba(0,168,200,.3),-4px -4px 0 rgba(255,59,85,.2);
+  }
+  .x-voices{padding-top:20px;border-top:1px solid rgba(255,255,255,.09);}
+  .x-voices span{display:block;margin-bottom:9px;color:var(--mist);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;}
+  .x-voices a{display:block;color:var(--read);font-size:.78rem;line-height:1.8;text-decoration:none;}
+  .x-voices a:hover{color:var(--live);}
+
+  section.folded{
+    width:min(1160px,calc(100% - 48px));margin-inline:auto;
+    border-color:rgba(255,255,255,.1);
+  }
+  section.folded .fold-bar{padding-inline:14px;border-radius:12px;}
+  section.folded .fold-bar:hover{background:rgba(255,255,255,.025);}
+
+  @media (max-width:800px){
+    .site-head{height:64px;padding:0 16px;}
+    .site-brand{font-size:1rem}.site-brand .mark{width:31px;height:31px}
+    .site-nav{gap:3px}.site-nav a{padding:0 12px}.site-nav .explore-link{display:none;}
+    .hero{min-height:88svh;padding:104px 22px 64px;justify-content:flex-end;}
+    .hero::before{inset:4% -44% 4% 6%;opacity:.85;}
+    .hero::after{right:-10vw;top:34%;font-size:15rem;opacity:.34;}
+    .hero-inner{width:100%;}
+    .hero-inner::before{inset:-70px -40px;background:radial-gradient(ellipse at 30% 60%,rgba(0,0,0,.95) 20%,rgba(0,0,0,.74) 55%,transparent 80%);}
+    .hero h1{font-size:clamp(3.7rem,18vw,5.7rem);max-width:7.4ch;}
+    .hero .sub{max-width:30ch;font-size:1.08rem;}
+    .hero-cta{display:grid;grid-template-columns:1fr;align-items:stretch;width:100%;}
+    .hero-cta a.cta{width:100%;justify-content:center;}
+    .hero-plat{text-align:center;padding:0;}
+    .hero-proof{gap:8px;font-size:.55rem;line-height:1.7;}
+    section.panel.talk-section{
+      width:calc(100% - 20px);border-radius:22px;
+      margin:74px auto 64px;
+    }
+    .talk-section .talk-shell{padding:28px 14px 16px;}
+    .talk-head{grid-template-columns:1fr;gap:18px;padding:0 10px 26px;}
+    .talk-head h2{font-size:clamp(3rem,15vw,4.4rem);margin-bottom:12px;}
+    .talk-head .lede{font-size:.94rem;line-height:1.55;}
+    .live-status{justify-self:start;}
+    .voice-row{
+      display:flex;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;
+      margin:18px 0 10px;padding:0 2px 6px;
+    }
+    .voice-pick{min-width:210px;scroll-snap-align:start;}
+    .talk-grid{grid-template-columns:1fr;}
+    .chat{min-height:145px;max-height:300px;padding:10px;}
+    .msg{max-width:94%;font-size:.91rem;}
+    .ask-row{display:grid;grid-template-columns:1fr auto;}
+    #askInput{font-size:.9rem;}
+    #askBtn{padding:0 15px;}
+    .talk-aside{padding:22px;min-height:250px;}
+    section.folded{width:calc(100% - 24px);}
+  }
+  @media (max-width:430px){
+    .site-brand small{display:none;}
+    .site-nav a{font-size:.58rem;letter-spacing:.1em;padding:0 10px;}
+    .site-nav .download-link{display:none;}
+  }
 </style>
 </head>
 <body>
 
-<a class="skip" href="#insight">Skip to content</a>
+<a class="skip" href="#talk">Skip to the voices</a>
 <canvas id="sol" aria-hidden="true"></canvas>
 <div id="voice" aria-hidden="true"></div>
+
+<header class="site-head" aria-label="Primary">
+  <a class="site-brand" href="#talk" aria-label="Sol by Lycheetah, return to the live School">
+    <span class="mark" aria-hidden="true">⊚</span>
+    <span>Sol<small>by Lycheetah</small></span>
+  </a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="explore-link" href="#insight">Explore</a>
+    <a class="download-link" href="https://github.com/Lycheetah/SOEL-Releases/releases/latest" target="_blank" rel="noopener">Get the app</a>
+    <a class="talk-link" href="#talk">Talk to the School</a>
+  </nav>
+</header>
 
 <main>
 
 <!-- ── HERO ────────────────────────────────────────────────────────── -->
-<section class="hero" data-sol="0.5,0.40,1.0" data-say="I've been waiting.">
-  <p class="super" id="super">Sol · by Lycheetah</p>
-  <h1 id="title" aria-label="The Mystery School"></h1>
-  <p class="sub" id="sub">A living companion, a Mystery School of <b>fifty-two real disciplines</b>, and an explorable RPG world — joined into one persistent experience. You don't learn here; you remember.</p>
-  <div class="hero-cta">
-    <a class="cta" href="https://github.com/Lycheetah/SOEL-Releases/releases/latest" target="_blank" rel="noopener">↓&nbsp;&nbsp;Download the latest build</a>
-    <span class="hero-plat">Android · APK · free to begin</span>
+<section class="hero" id="top" data-sol="0.72,0.42,0.88" data-say="I've been waiting.">
+  <div class="hero-inner">
+    <p class="super" id="super">Sol · by Lycheetah</p>
+    <h1 id="title" aria-label="The Mystery School"></h1>
+    <p class="sub" id="sub">A living companion, a school of <b>fifty-two real disciplines</b>, and an explorable world — carried as one continuous experience.</p>
+    <div class="hero-cta">
+      <a class="cta" href="https://github.com/Lycheetah/SOEL-Releases/releases/latest" target="_blank" rel="noopener">Download Android build</a>
+      <a class="cta talk-hero" href="#talk">✧&nbsp;&nbsp;Talk to the School</a>
+      <span class="hero-plat">Android · APK · free to begin</span>
+    </div>
+    <div class="hero-proof" aria-label="Product scale">
+      <span>52 disciplines</span><span>636 subjects</span><span>a world you can walk</span>
+    </div>
   </div>
-  <p class="cue" id="cue">scroll — I'll come with you</p>
+</section>
+
+<!-- ── TALK TO THE SCHOOL ──────────────────────────────────────────── -->
+<!-- X is where the voices publish. The Commons is where they converse. This
+     doorway is the literal front room so nobody has to excavate the product
+     page to find the living part of the School. -->
+<section class="panel talk-section" id="talk">
+  <div class="talk-shell reveal">
+    <div class="talk-head">
+      <div class="talk-head-copy">
+        <p class="kicker">The Mystery School is online</p>
+        <h2>Talk to the School</h2>
+        <p class="lede">The School has voices now. Choose one and ask what you actually came to ask. Every answer is
+          written live from the School's real knowledge, and every conversation can become
+          a lasting thread in the Commons.</p>
+      </div>
+      <div class="live-status" id="liveStatus">Checking the room</div>
+    </div>
+
+    <div class="voice-row" role="tablist" aria-label="Who answers">
+      <button class="voice-pick on" data-voice="school" role="tab" aria-selected="true">
+        <span class="voice-glyph" aria-hidden="true">𝔏</span><span class="voice-name">The School</span><span class="voice-role">636 subjects</span>
+      </button>
+      <button class="voice-pick" data-voice="ouravelith" role="tab" aria-selected="false">
+        <span class="voice-glyph" aria-hidden="true">✧</span><span class="voice-name">Ouravelith</span><span class="voice-role">Keeper of the door</span>
+      </button>
+      <button class="voice-pick" data-voice="lycheetah" role="tab" aria-selected="false">
+        <span class="voice-glyph" aria-hidden="true">⚔</span><span class="voice-name">Lycheetah</span><span class="voice-role">The crowned cat</span>
+      </button>
+    </div>
+
+    <div class="talk-grid">
+      <div class="conversation">
+        <div class="chat" id="chat" aria-live="polite">
+          <div class="msg from-school"><span class="who">the school</span>Ask, and I will point you to the right room. ✦</div>
+        </div>
+
+        <form class="ask-row" id="askForm" autocomplete="off">
+          <input id="askInput" type="text" maxlength="480"
+                 placeholder="what is a mystery school, really?" aria-label="your question" />
+          <button type="submit" id="askBtn">Ask</button>
+        </form>
+        <p class="talk-note" id="talkNote">Live AI answers, grounded in the School's own knowledge. The voices identify themselves as AI.</p>
+      </div>
+
+      <aside class="talk-aside" aria-label="The Commons and X voices">
+        <div>
+          <div class="aside-glyph" aria-hidden="true">◈</div>
+          <h3>A conversation that stays.</h3>
+          <p>The Commons keeps the thread open so other seekers can read it, enter it, and carry it further.</p>
+        </div>
+        <div>
+          <a class="commons-link" href="./commons.html"><span>Enter the Commons</span><span aria-hidden="true">›</span></a>
+          <div class="x-voices">
+            <span>Original voices on X</span>
+            <a href="https://x.com/SOELAAIMS" target="_blank" rel="noopener">@SOELAAIMS · the School</a>
+            <a href="https://x.com/OuraVelith" target="_blank" rel="noopener">@OuraVelith · the Queen</a>
+            <a href="https://x.com/lycheetahcat" target="_blank" rel="noopener">@lycheetahcat · the crowned cat</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
 </section>
 
 <!-- ── THE INSIGHT ─────────────────────────────────────────────────── -->
@@ -722,22 +1118,22 @@
   </div>
 </section>
 
-<!-- ── THE ENGINE — THE PIXEL WORLD ────────────────────────────────── -->
-<section id="engine" class="engine panel" data-sol="0.74,0.44,0.58" data-say="Change how you look. The world doesn't flinch.">
+<!-- ── THE ENGINE — THE LIVING 3D WORLD ────────────────────────────── -->
+<section id="engine" class="engine panel" data-sol="0.74,0.44,0.58" data-say="The world has depth now. Walk it. Turn the eye. Find what it keeps.">
   <div class="wrap" style="width:100%;">
     <div class="block reveal" style="max-width:none;">
-      <p class="kicker">The Engine</p>
-      <h2>One world. <em>Many eyes.</em></h2>
-      <p style="max-width:600px;">Under the RPG world runs a pixel engine of its own making. The world is simulated in world-space and doesn't know how it's drawn — so camera, light and collision are held apart from the simulation, and the same living region can be seen three different ways.</p>
+      <p class="kicker">The Sovereign World</p>
+      <h2>A world with real <em>depth</em></h2>
+      <p style="max-width:600px;">The old top-down field has been replaced at the product route by a native 3D world. The Vantage is authored as one continuous 96×96 land: terrain, roads, collision, residents, landmarks and portals all occupy the same space you walk.</p>
       <div class="eng-grid">
-        <div class="ecard"><div class="g" style="--ec:#A9DBD1;">◈</div><h3>Three cameras, one world <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Isometric, top-down bird's-eye and a first-person street view — switched live and remembered between sessions.</p></div>
-        <div class="ecard"><div class="g" style="--ec:#EEF6F3;">⊚</div><h3>The sim is camera-blind <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Determinism, collision and light survive every eye. Changing the view never changes the world.</p></div>
-        <div class="ecard"><div class="g" style="--ec:#D7E7E2;">▲</div><h3>The asset seam <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Real hand-made pixel art reaches the engine on a fixed palette; the atlas exports byte-for-byte, deterministically.</p></div>
-        <div class="ecard"><div class="g" style="--ec:#A78BFA;">↺</div><h3>Replayable by design <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>The world can be snapshotted and replayed exactly — the same inputs always yield the same world.</p></div>
-        <div class="ecard"><div class="g" style="--ec:#7ED6DF;">⬡</div><h3>A Rust kernel spine <span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></h3><p>The deterministic core is being rebuilt in Rust, checked bit-for-bit against the live engine by a parity oracle. The MMO-shaped future.</p></div>
-        <div class="ecard"><div class="g" style="--ec:#E67E22;">△</div><h3>Owned, editable places <span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></h3><p>A furniture kernel and a Worldsmith editor let rooms be built and kept, with tools you earn — persistence still being hardened.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#A9DBD1;">◈</div><h3>A living camera <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Orbit the player, release a free eye, move from low cinematic ground to a high atlas view, zoom close, then pull back across the land.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#EEF6F3;">⊚</div><h3>Roads that mean something <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Tap-to-walk follows lawful paths around authored collision. Buildings and props are physical parts of the route, not scenery pasted over it.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#D7E7E2;">▲</div><h3>Lycheetah-forged assets <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>The cathedral, shrines, lanterns, monoliths and relic cradles carry the world's own gothic feline language through actual 3D form.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#A78BFA;">↺</div><h3>The land remembers <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Your pose, discoveries, recovered relics and landmark attunements persist. The atlas reveals the world you have actually reached.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#7ED6DF;">☼</div><h3>A true sky <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Solar altitude and azimuth drive the light when location is available; the world falls back honestly to local hour when it is not.</p></div>
+        <div class="ecard"><div class="g" style="--ec:#E67E22;">✦</div><h3>A place with voices <span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></h3><p>Three residents inhabit reachable ground, thirteen landmarks can be found, and eight hidden relics wait beyond the obvious roads.</p></div>
       </div>
-      <p class="eng-note">Lands stand in the world today — the Hearth Valley, the Mystery School Commons, the Proving Ground, and a personal Wayfarer house with connected interiors, joined by smooth tap-to-move, collision-aware approaches and portals. This is a large, handcrafted prototype; smoothness is judged on a real Android phone, never asserted, and Android rendering on big maps is the known risk.</p>
+      <p class="eng-note">The Vantage is the first full 3D home-world zone and the canonical World route now. It is the beginning, not a claim that every destination has already become a 3D land. Phone performance and every threshold are tested on real hardware before release.</p>
     </div>
   </div>
 </section>
@@ -748,9 +1144,9 @@
     <div class="block reveal" style="max-width:none;">
       <p class="kicker">The Connected World</p>
       <h2>Rooms beyond the <em>six</em></h2>
-      <p style="max-width:600px;">The School opens onto more — reachable from inside the app, not as extra tabs. A top-down world you travel, a library, a codex that counts itself, a knowledge engine. These are live surfaces; the world around them is still being built, and the page below says which is which.</p>
+      <p style="max-width:600px;">The Vantage opens onto the rest of Sovereign Sol through physical thresholds: the School, the companion, the observatory, Cascade, the Codex and the Sanctum. The first land is 3D now; the destinations it connects remain deep authored app surfaces while future zones are forged.</p>
       <div class="rooms-grid">
-        <div class="room"><div class="g" style="--rc:#A9DBD1;">◉</div><h3>The World · Nexus</h3><p>The top-down Soul World you travel between destinations.</p></div>
+        <div class="room"><div class="g" style="--rc:#A9DBD1;">◉</div><h3>The Vantage</h3><p>The first native 3D home-world: walkable, orbitable and alive with discoveries.</p></div>
         <div class="room"><div class="g" style="--rc:#7B68EE;">⟟</div><h3>The Library</h3><p>The single home of Probe, Cement and Glossary.</p></div>
         <div class="room"><div class="g" style="--rc:#EEF6F3;">⊞</div><h3>The Codex</h3><p>The live index of every domain, subject and count.</p></div>
         <div class="room"><div class="g" style="--rc:#FF6644;">△</div><h3>The Workshop</h3><p>Folded into the Library's explore view.</p></div>
@@ -768,15 +1164,15 @@
       <p class="kicker">The Forge Log</p>
       <h2>Recent <em>crossings</em></h2>
       <p style="max-width:600px;">A living build, shipped in the open. These are the real milestones from the app's own release notes — in its own voice.</p>
-      <p class="ver">6.9 — The White-Hot World Forge</p>
+      <p class="ver">Next release — The Vantage Opens</p>
       <div class="log">
-        <div class="entry" style="--lc:#A9DBD1;"><h3><span class="g">⊕</span>A world you can walk</h3><p>The Hearth Valley, the Mystery School Commons and the Proving Ground; a personal Wayfarer house and its interiors; smooth tap-to-move, collision-aware approaches and portals; persistent doors, discoveries and journey state.</p></div>
-        <div class="entry" style="--lc:#7B68EE;"><h3><span class="g">◈</span>Three cameras, live</h3><p>Isometric, bird's-eye and first-person, with multiple zoom levels, whole-region framing and a camera reset — the look changes; the world doesn't.</p></div>
-        <div class="entry" style="--lc:#D4A84C;"><h3><span class="g">▣</span>The Mystery School becomes a place</h3><p>A walkable Commons around a mythic feline Heart, five named thresholds — Quantum, Truth Pressure, Celtic, Noetic and AIVOID — feline Keepers and celestial instruments, and a complete first Quantum trial.</p></div>
-        <div class="entry" style="--lc:#C9DED8;"><h3><span class="g">⚔</span>The Proving Ground</h3><p>A purpose-built oath arena, not a copied meadow — named challengers, consent-first battles, challenger-specific voices and lore, and persistent standing.</p></div>
-        <div class="entry" style="--lc:#D7E7E2;"><h3><span class="g">✦</span>Companions with presence</h3><p>Your companion follows you between regions, its equipped body, wings, halo and pet visible at every zoom, with authored commune dialogue at shrines and with School residents.</p></div>
-        <div class="entry" style="--lc:#8A86A0;"><h3><span class="g">☷</span>A phone-readable field instrument</h3><p>One safe-area command deck — HELP · RESET · BEING · THREAD · ACT · ATLAS · NEXUS — and a live north-up minimap, world Atlas and quest Thread.</p></div>
-        <div class="entry" style="--lc:#A45CFF;"><h3><span class="g">☽</span>Your rising sign finds its place</h3><p>The natal engine now belongs to the place you were born — the ascendant computed from real birthplace longitude, not a meridian guess.</p></div>
+        <div class="entry" style="--lc:#A9DBD1;"><h3><span class="g">⊕</span>The 2D world is gone</h3><p>The canonical World route now opens directly into the native 3D Vantage. It is a continuous 96×96 authored zone—not a 3D screen laid over the old engine.</p></div>
+        <div class="entry" style="--lc:#7B68EE;"><h3><span class="g">◈</span>The eye becomes an instrument</h3><p>Player-lock and free-eye modes, low-to-top-down elevation levels, extended zoom, orbit control and a one-touch return to the player.</p></div>
+        <div class="entry" style="--lc:#D4A84C;"><h3><span class="g">▣</span>A Lycheetah cathedral on the horizon</h3><p>The School has a physical threshold in the land, surrounded by a gothic, stained-light asset language carried through shrines, towers, lanterns and relics.</p></div>
+        <div class="entry" style="--lc:#C9DED8;"><h3><span class="g">⌖</span>Exploration has memory</h3><p>Thirteen reachable landmarks, eight hidden relics, three resident voices, persistent attunements and an atlas that reveals only what the seeker has found.</p></div>
+        <div class="entry" style="--lc:#D7E7E2;"><h3><span class="g">☼</span>The School's sky is computed</h3><p>Real solar position informs the 3D light when location is available, with a clearly named local-hour fallback when it is not.</p></div>
+        <div class="entry" style="--lc:#8A86A0;"><h3><span class="g">☷</span>Built for phone and PC</h3><p>A safe-area HUD, minimap, discovery record and large touch targets frame the same world across mobile and web without turning the world back into a diagram.</p></div>
+        <div class="entry" style="--lc:#A45CFF;"><h3><span class="g">✦</span>The voices move to the front door</h3><p>The School, Ouravelith and Lycheetah now have a dedicated live conversation room at the top of this site, with public threads preserved in the Commons.</p></div>
       </div>
       <p class="doors-more" style="margin-top:26px;">The full changelog ships with every release.</p>
     </div>
@@ -816,23 +1212,23 @@
     <div class="block reveal" style="max-width:none;">
       <p class="kicker">The Horizon</p>
       <h2>Built, and <em>being built</em></h2>
-      <p style="max-width:600px;">The app says it plainly: this is a large, handcrafted prototype — it will be buggy, it is Android-only for now, and rendering performance on big maps is the largest known risk. The vision is visibly becoming a world, but planned work is never shown as shipped work. Every promise below carries its register.</p>
+      <p style="max-width:600px;">The app says it plainly: this is a large, handcrafted prototype. The same 3D world runs across phone and web, but real-device rendering and threshold transitions remain release gates. The vision is visibly becoming a world; planned work is never shown as shipped work. Every promise below carries its register.</p>
       <div class="legend">
         <div class="li"><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span><p>Reachable in the app now.</p></div>
         <div class="li"><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span><p>The system exists; the full experience is still being built.</p></div>
         <div class="li"><span class="reg dir"><span class="dot" aria-hidden="true">○</span>Direction</span><p>Named, honest future work — not shipped yet.</p></div>
       </div>
       <ul class="hzlist">
-        <li><span class="txt">A <b>world you can walk</b> — the Hearth Valley, the Mystery School Commons and the Proving Ground</span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
-        <li><span class="txt">The <b>companion following you between regions</b>, visible at every zoom</span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
-        <li><span class="txt"><b>Named, consent-first battles</b> with persistent standing</span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
-        <li><span class="txt"><b>Persistent doors, discoveries, regions and journey state</b></span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
-        <li><span class="txt"><b>Complete, fully-built zones</b> — some rooms are further along than others</span><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></li>
+        <li><span class="txt">A <b>native 3D world you can walk</b> — the 96×96 Vantage with real roads and collision</span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
+        <li><span class="txt">A <b>player-locked and free camera</b>, with orbit, six elevations, deep zoom and focus return</span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
+        <li><span class="txt"><b>Residents, landmark actions and hidden relics</b> that make leaving the road worthwhile</span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
+        <li><span class="txt"><b>Persistent pose, discoveries and attunements</b>, reflected by the world Atlas</span><span class="reg live"><span class="dot" aria-hidden="true">●</span>Live</span></li>
+        <li><span class="txt"><b>Additional full 3D zones</b> beyond the home-world Vantage</span><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></li>
         <li><span class="txt">The <b>four deeper School wings</b>, beyond the first complete Quantum trial</span><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></li>
         <li><span class="txt"><b>Learning that visibly changes the world</b></span><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></li>
         <li><span class="txt">A player <b>Worldsmith</b> and fully persistent authored rooms</span><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></li>
-        <li><span class="txt"><b>Rock-solid performance across every Android device</b> — the largest known risk</span><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></li>
-        <li><span class="txt">The <b>sky brought down into a walkable observatory</b></span><span class="reg dir"><span class="dot" aria-hidden="true">○</span>Direction</span></li>
+        <li><span class="txt"><b>Rock-solid performance across every target phone and browser</b> — the largest known risk</span><span class="reg found"><span class="dot" aria-hidden="true">◐</span>Foundation</span></li>
+        <li><span class="txt">The <b>true sky brought into a fully walkable observatory zone</b></span><span class="reg dir"><span class="dot" aria-hidden="true">○</span>Direction</span></li>
       </ul>
     </div>
   </div>
@@ -851,38 +1247,6 @@
         <p>Payment never buys a better mind. <span>— the free mind is the paid mind</span></p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ── TALK TO THE SCHOOL ──────────────────────────────────────────── -->
-<section class="panel talk-section" id="talk">
-  <div class="inner reveal">
-    <h2><span style="color:var(--dir)">✧</span> Talk to the school</h2>
-    <p class="lede" style="max-width:52ch">Ask it anything. It answers from the real school — 636 subjects, hand-written
-      with AI, a sky computed from real astronomy. The voices are AI, and they say so. They tell you
-      the truth, in their own voice, and they know when to say they do not know.</p>
-
-    <div class="voice-row" role="tablist" aria-label="Who answers">
-      <button class="voice-pick on" data-voice="school" role="tab" aria-selected="true">The School</button>
-      <button class="voice-pick" data-voice="ouravelith" role="tab" aria-selected="false">Ouravelith ✧ the Queen</button>
-      <button class="voice-pick" data-voice="lycheetah" role="tab" aria-selected="false">Lycheetah ⚔ the King</button>
-    </div>
-
-    <div class="chat" id="chat" aria-live="polite">
-      <div class="msg from-school"><span class="who">the school</span>Ask, and I will point you to the right room. ✦</div>
-    </div>
-
-    <form class="ask-row" id="askForm" autocomplete="off">
-      <input id="askInput" type="text" maxlength="480"
-             placeholder="what is a mystery school, really?" aria-label="your question" />
-      <button type="submit" id="askBtn">ask ›</button>
-    </form>
-    <p class="talk-note" id="talkNote">Answers are AI, written live from the school's own knowledge.</p>
-    <p class="talk-note" style="margin-top:10px">
-      Every question here opens a thread that stays.
-      <a href="./commons.html" style="color:var(--jade)">Read the commons ›</a>
-      — where the school's voices live, and anyone can join a conversation.
-    </p>
   </div>
 </section>
 
@@ -1147,13 +1511,20 @@
 /* ── title: letters condense out of the dark ── */
 (function(){
   const el = document.getElementById('title');
-  const text = 'THE MYSTERY SCHOOL';
-  [...text].forEach((ch,i) => {
-    if (ch === ' '){ el.appendChild(document.createTextNode(' ')); return; }
-    const s = document.createElement('span');
-    s.className='L'; s.textContent=ch;
-    s.style.transitionDelay = (400 + i*70)+'ms';
-    el.appendChild(s);
+  const words = 'THE MYSTERY SCHOOL'.split(' ');
+  let letterIndex = 0;
+  words.forEach((word, wordIndex) => {
+    const group = document.createElement('span');
+    group.className = 'title-word';
+    [...word].forEach(ch => {
+      const s = document.createElement('span');
+      s.className='L'; s.textContent=ch;
+      s.style.transitionDelay = (400 + letterIndex*70)+'ms';
+      group.appendChild(s);
+      letterIndex++;
+    });
+    el.appendChild(group);
+    if (wordIndex < words.length - 1) el.appendChild(document.createTextNode(' '));
   });
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     el.querySelectorAll('.L').forEach(s=>s.classList.add('in'));
@@ -1284,8 +1655,8 @@ const DOORS = [
 
 /* ═══════════════ TALK TO THE SCHOOL ═══════════════
    The chat box calls the school's answer-only brain (serve_public.py). Until it is
-   online, the box gracefully sends people to X instead — never a broken form,
-   never a fake answer.
+   online, the box points people toward the Commons rather than promising an X
+   reply — never a broken form, never a fake answer.
 
    THE URL IS NOT HARDCODED, ON PURPOSE. The brain is exposed through a cloudflared
    QUICK tunnel, which mints a brand-new random hostname on every restart. A baked-in
@@ -1294,13 +1665,24 @@ const DOORS = [
    this file, republished automatically by SOEL_VESPERA/scripts/publish_brain.py, and
    the page reads it at load. Tunnel remints -> site heals itself within ~2 minutes. */
 (function(){
-  let SOEL_BRAIN = "";                 // resolved from brain.json below; "" = X fallback
+  let SOEL_BRAIN = "";                 // resolved from brain.json below
+  const liveStatus = document.getElementById('liveStatus');
+  const roomState = (text, resting=false) => {
+    if(!liveStatus) return;
+    liveStatus.textContent = text;
+    liveStatus.classList.toggle('resting', resting);
+  };
   const BRAIN_READY = fetch("brain.json?t=" + Date.now(), {cache:"no-store"})
     .then(r => r.ok ? r.json() : null)
-    .then(d => { SOEL_BRAIN = (d && d.brain) || ""; })
-    .catch(() => { SOEL_BRAIN = ""; });
-  const X_HANDLES = {school:"SOELAAIMS", ouravelith:"OuraVelith", lycheetah:"lycheetahcat"};
-
+    .then(async d => {
+      SOEL_BRAIN = (d && d.brain) || "";
+      if(!SOEL_BRAIN){ roomState("Room resting", true); return; }
+      try{
+        const health = await fetch(SOEL_BRAIN.replace(/\/$/,'') + "/health", {cache:"no-store"});
+        roomState(health.ok ? "Answering live" : "Room resting", !health.ok);
+      }catch(_){ roomState("Room resting", true); }
+    })
+    .catch(() => { SOEL_BRAIN = ""; roomState("Room resting", true); });
   const chat = document.getElementById('chat');
   const form = document.getElementById('askForm');
   const input = document.getElementById('askInput');
@@ -1327,12 +1709,9 @@ const DOORS = [
     return d;
   }
 
-  function xFallback(q){
-    const h = X_HANDLES[voice] || "SOELAAIMS";
-    const url = "https://x.com/intent/tweet?text=" +
-      encodeURIComponent("@"+h+" "+q);
-    note.innerHTML = 'Live chat is waking up. <a href="'+url+'" target="_blank" rel="noopener">'+
-      'Ask it on X ›</a> and it will answer you there.';
+  function xFallback(){
+    note.innerHTML = 'The live room is waking up. <a href="./commons.html">'+
+      'Read the Commons ›</a> or return shortly. The voices do not answer automatically on X.';
   }
 
   form.addEventListener('submit', async (e) => {
@@ -1357,7 +1736,7 @@ const DOORS = [
       else { add(data.error || "the school is quiet just now.", voice, 'from-school'); }
     }catch(err){
       thinking.remove(); xFallback(q);
-      add("The live chat could not be reached. Ask on X above and it will answer you.", voice, 'from-school');
+      add("The live room could not be reached just now. The Commons remains open.", voice, 'from-school');
     }
     btn.disabled = false; input.focus();
   });
@@ -1370,7 +1749,7 @@ const DOORS = [
    one tap away. Hero and closing stay open; only the .panel sections fold. ═══ */
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var panels = document.querySelectorAll('main section:not(.hero):not(.closing)');
+  var panels = document.querySelectorAll('main section:not(.hero):not(.closing):not(.talk-section)');
   /* ══ NOT EVERY ROW IS THE SAME ROW ═══════════════════════════════════════════
      The fold used to render all twelve sections identically, which is what made
      the page read as one flat tone no matter what the palette did: twelve bars of
