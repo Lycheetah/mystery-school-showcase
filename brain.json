@@ -1,5 +1,5 @@
 {
-  "brain": "https://unsigned-patent-font-aug.trycloudflare.com",
-  "updated": "2026-08-15T21:19:54+1200",
+  "brain": "https://reader-viewers-discretion-sisters.trycloudflare.com",
+  "updated": "2026-08-16T10:18:26+1200",
   "note": "Written by SOEL_VESPERA/scripts/publish_brain.py. The quick tunnel remints its hostname on every restart; the site reads this file so it heals itself instead of calling a dead host."
 }
