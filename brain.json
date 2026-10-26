@@ -1,5 +1,5 @@
 {
-  "brain": "https://tomatoes-criticism-cambridge-glucose.trycloudflare.com",
-  "updated": "2026-10-26T08:40:34+1300",
+  "brain": "https://fwd-tuning-oxford-banners.trycloudflare.com",
+  "updated": "2026-10-27T08:41:03+1300",
   "note": "Written by SOEL_VESPERA/scripts/publish_brain.py. The quick tunnel remints its hostname on every restart; the site reads this file so it heals itself instead of calling a dead host."
 }
